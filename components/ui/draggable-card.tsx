@@ -14,14 +14,17 @@ import {
 export const DraggableCardBody = ({
   className,
   children,
+  glowColor = "rgba(255, 255, 255, 0.2)",
 }: {
   className?: string;
   children?: React.ReactNode;
+  glowColor?: string;
 }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const controls = useAnimationControls();
+  const [isHovered, setIsHovered] = useState(false);
   const [constraints, setConstraints] = useState({
     top: 0,
     left: 0,
@@ -99,9 +102,14 @@ export const DraggableCardBody = ({
     mouseY.set(deltaY);
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
   const handleMouseLeave = () => {
     mouseX.set(0);
     mouseY.set(0);
+    setIsHovered(false);
   };
 
   return (
@@ -157,26 +165,23 @@ export const DraggableCardBody = ({
         rotateY,
         opacity,
         willChange: "transform",
+        boxShadow: "0 10px 20px -10px rgba(0,0,0,0.1)",
       }}
       animate={controls}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative min-h-96 w-80 overflow-hidden rounded-md bg-neutral-100 p-6 shadow-2xl transform-3d dark:bg-neutral-900",
+        "relative min-h-96 w-80 overflow-hidden rounded-xl bg-neutral-100 p-8 shadow-2xl transform-3d dark:bg-neutral-900 transition-shadow duration-300",
         className,
       )}
     >
       {children}
-      <motion.div
-        style={{
-          opacity: glareOpacity,
-        }}
-        className="pointer-events-none absolute inset-0 bg-white select-none"
-      />
     </motion.div>
   );
 };
+
 
 export const DraggableCardContainer = ({
   className,

@@ -3,16 +3,18 @@
 import { motion } from 'framer-motion';
 import PixelSnow from './react-bits/PixelSnow';
 import LogoLoop from './react-bits/LogoLoop';
+import DecryptedText from './react-bits/DecryptedText';
 
-import { 
-  SiNextdotjs, 
-  SiTailwindcss, 
-  SiReact, 
-  SiFramer, 
-  SiVercel, 
-  SiTypescript, 
-  SiThreedotjs, 
-  SiGreensock 
+
+import {
+  SiNextdotjs,
+  SiTailwindcss,
+  SiReact,
+  SiFramer,
+  SiVercel,
+  SiTypescript,
+  SiThreedotjs,
+  SiGreensock
 } from 'react-icons/si';
 
 const partnerLogos = [
@@ -31,7 +33,7 @@ export default function Hero() {
     <section className="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-black">
       {/* Pixel Snow Background */}
       <div className="absolute inset-0 z-0">
-        <PixelSnow 
+        <PixelSnow
           color="#ffffff"
           flakeSize={0.01}
           minFlakeSize={1.25}
@@ -48,29 +50,33 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center">
+      <div className="relative z-10 container mx-auto px-6 text-center mt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center gap-6"
         >
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase text-white/70"
-          >
-            Digital Excellence Redefined
-          </motion.div>
+
+
 
           <h1 className="text-3xl md:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.1]">
-            We Build Websites So Good, Your <span className="text-[#0439B8]">Competitors</span> Start Taking Notes
+            We Build Websites So Good, Your <DecryptedText text="Competitors" animateOn="view" speed={100} maxIterations={30} className="text-[#0439B8]" /> Start Taking Notes
           </h1>
 
-          <p className="text-base md:text-lg text-zinc-400 max-w-xl leading-relaxed font-light">
+
+
+
+
+
+
+
+          <p className="text-base md:text-lg text-zinc-400 max-w-2xl leading-relaxed font-light">
             Crafting high-performance digital experiences that command attention and drive growth.
           </p>
+
+
+
 
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <motion.button
@@ -87,10 +93,11 @@ export default function Hero() {
             >
               Our Strategy
             </motion.button>
+
           </div>
 
           {/* Logo Loop Slider */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
@@ -99,7 +106,9 @@ export default function Hero() {
             <p className="text-[10px] uppercase tracking-[0.3em] text-white/70 mb-8 font-bold">
               Trusted by industry leaders
             </p>
-            <LogoLoop 
+
+
+            <LogoLoop
               logos={partnerLogos}
               speed={40}
               gap={100}
@@ -108,7 +117,7 @@ export default function Hero() {
               fadeOutColor="black"
               pauseOnHover={true}
             />
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
 

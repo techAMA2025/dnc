@@ -8,6 +8,8 @@ import { TestimonialsBackground } from "@/components/TestimonialsBackground";
 import { ExpandableCardDemo } from "@/components/ui/expandable-card-demo-standard";
 import FlowingMenu from "@/components/FlowingMenu";
 import LanyardCTA from "@/components/LanyardCTA";
+import PixelCTA from "@/components/PixelCTA";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   const impactItems = [
@@ -22,7 +24,7 @@ export default function Home() {
       <Hero />
 
       {/* Projects Section */}
-      <section className="relative w-full h-[90vh] py-24 overflow-hidden bg-white border-t border-black/5">
+      <section className="relative w-full h-[110vh] py-24 overflow-hidden bg-white border-t border-black/5">
         {/* Decorative background glow - adjusted for white bg */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0439B8]/5 blur-[120px] pointer-events-none z-0" />
 
@@ -42,17 +44,21 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <div className="w-full h-[60vh] mt-10">
+        <div className="w-full h-[85vh] -mt-20">
           <CircularGallery
             items={[
-              { image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop", text: "Abstract Flow" },
-              { image: "https://images.unsplash.com/photo-1614850523296-e8c041de4398?q=80&w=2670&auto=format&fit=crop", text: "Digital Wave" },
-              { image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=2535&auto=format&fit=crop", text: "Neon Grid" },
-              { image: "https://images.unsplash.com/photo-1618556450991-2f1af64e8191?q=80&w=2564&auto=format&fit=crop", text: "Modern Minimal" },
-              { image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2670&auto=format&fit=crop", text: "Cyberpunk City" },
-              { image: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=2487&auto=format&fit=crop", text: "Ethereal Glow" },
+              { image: "/projects/project-1.jpg", text: "Innovation Hub" },
+              { image: "/projects/project-2.jpg", text: "Cloud Core" },
+              { image: "/projects/project-3.jpg", text: "Digital Nexus" },
+              { image: "/projects/project-4.jpg", text: "Alpha Stream" },
+              { image: "/projects/project-5.jpg", text: "Quantum Edge" },
+              { image: "/projects/project-6.jpg", text: "Visionary Lab" },
+              { image: "/projects/project-7.jpg", text: "Synth Wave" },
+              { image: "/projects/project-8.jpg", text: "Pulse Design" },
+              { image: "/projects/project-9.jpg", text: "Nexus Prime" },
+              { image: "/projects/project-10.jpg", text: "Zenith Tech" },
             ]}
-            bend={3}
+            bend={0}
             textColor="#000000"
             borderRadius={0.05}
             font="bold 30px Inter"
@@ -62,7 +68,10 @@ export default function Home() {
 
 
       {/* What We Do Section */}
-      <section className="relative w-full bg-white dark:bg-black overflow-hidden border-t border-black/5 dark:border-white/5">
+      <section className="relative w-full bg-white overflow-hidden border-t border-black/5">
+        {/* Decorative background glow - same as Projects section */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] blur-[120px] pointer-events-none z-0" />
+
         <div className="relative z-10 container mx-auto px-6 text-center pt-24 -mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -70,21 +79,22 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-black dark:text-white mb-6">
+            <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-black mb-6">
               What We <span className="text-[#0439B8]">Do</span>
             </h2>
-            <p className="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-              We build immersive digital experiences that captivate, engage, and inspire.
+            <p className="text-zinc-600 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+              Specializing in Custom Code, Shopify, and WordPress at the forefront, supported by high-impact SEO and Digital Marketing behind the scenes.
             </p>
           </motion.div>
         </div>
+
         <DraggableCardDemo />
       </section>
+      <PixelCTA />
 
-      {/* Testimonials Section */}
-      <section className="relative w-full border-t border-white/5 bg-black">
-        <TestimonialsBackground />
-      </section>
+
+
+
 
       {/* Blogs Section */}
       <section className="py-24 bg-white dark:bg-neutral-950 border-t border-black/5 dark:border-white/5">
@@ -99,15 +109,19 @@ export default function Home() {
               Latest <span className="text-[#0439B8]">Insights</span>
             </h2>
             <p className="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-              Explore our latest thoughts on design, technology, and the future of digital experiences.
+              Explore our latest thoughts on web development, e-commerce, and digital growth strategies.
             </p>
           </motion.div>
         </div>
         <ExpandableCardDemo />
       </section>
 
-      {/* CTA Section with Lanyard */}
-      <LanyardCTA />
+      {/* FAQ Section */}
+      <FAQ />
+
+      {/* New Pixel CTA Section */}
+
+
 
     </main>
   );

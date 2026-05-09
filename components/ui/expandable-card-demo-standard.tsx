@@ -130,28 +130,28 @@ export function ExpandableCardDemo() {
             layoutId={`card-${card.title}-${id}`}
             key={`card-${card.title}-${id}`}
             onClick={() => setActive(card)}
-            className="p-4 flex flex-col md:flex-row justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+            className="p-4 flex flex-row justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
           >
-            <div className="flex gap-4 flex-col md:flex-row ">
+            <div className="flex gap-4 flex-row items-center">
               <motion.div layoutId={`image-${card.title}-${id}`}>
                 <img
                   width={100}
                   height={100}
                   src={card.src}
                   alt={card.title}
-                  className="h-40 w-40 md:h-14 md:w-14 rounded-lg object-cover object-top"
+                  className="h-14 w-14 rounded-lg object-cover object-top"
                 />
               </motion.div>
               <div className="">
                 <motion.h3
                   layoutId={`title-${card.title}-${id}`}
-                  className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left"
+                  className="font-medium text-neutral-800 dark:text-neutral-200 text-left"
                 >
                   {card.title}
                 </motion.h3>
                 <motion.p
                   layoutId={`description-${card.description}-${id}`}
-                  className="text-neutral-600 dark:text-neutral-400 text-center md:text-left"
+                  className="text-neutral-600 dark:text-neutral-400 text-left"
                 >
                   {card.description}
                 </motion.p>
@@ -159,7 +159,7 @@ export function ExpandableCardDemo() {
             </div>
             <motion.button
               layoutId={`button-${card.title}-${id}`}
-              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0"
+              className="px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black"
             >
               {card.ctaText}
             </motion.button>
@@ -205,112 +205,83 @@ export const CloseIcon = () => {
 
 const cards = [
   {
-    description: "Lana Del Rey",
-    title: "Summertime Sadness",
-    src: "https://assets.aceternity.com/demos/lana-del-rey.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
+    description: "Custom Development",
+    title: "The Power of Web Solutions",
+    src: "/blogs/custom-code.png",
+    ctaText: "Read More",
+    ctaLink: "#",
     content: () => {
       return (
         <p>
-          Lana Del Rey, an iconic American singer-songwriter, is celebrated for
-          her melancholic and cinematic music style. Born Elizabeth Woolridge
-          Grant in New York City, she has captivated audiences worldwide with
-          her haunting voice and introspective lyrics. <br /> <br /> Her songs
-          often explore themes of tragic romance, glamour, and melancholia,
-          drawing inspiration from both contemporary and vintage pop culture.
-          With a career that has seen numerous critically acclaimed albums, Lana
-          Del Rey has established herself as a unique and influential figure in
-          the music industry, earning a dedicated fan base and numerous
-          accolades.
+          In a world of cookie-cutter templates, custom web development stands out by providing
+          tailored solutions that align perfectly with your business goals. Bespoke code ensures
+          maximum performance, superior security, and a unique user experience that templates
+          simply cannot match. <br /> <br />
+          Our approach focuses on clean, scalable architecture using modern frameworks like
+          Next.js and React. This not only improves search engine rankings through better
+          Core Web Vitals but also provides the flexibility to grow your platform as your
+          business evolves.
         </p>
       );
     },
   },
   {
-    description: "Babbu Maan",
-    title: "Mitran Di Chhatri",
-    src: "https://assets.aceternity.com/demos/babbu-maan.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
+    description: "E-commerce Strategy",
+    title: "Scaling Your Brand with Shopify",
+    src: "/blogs/shopify.png",
+    ctaText: "Read More",
+    ctaLink: "#",
     content: () => {
       return (
         <p>
-          Babu Maan, a legendary Punjabi singer, is renowned for his soulful
-          voice and profound lyrics that resonate deeply with his audience. Born
-          in the village of Khant Maanpur in Punjab, India, he has become a
-          cultural icon in the Punjabi music industry. <br /> <br /> His songs
-          often reflect the struggles and triumphs of everyday life, capturing
-          the essence of Punjabi culture and traditions. With a career spanning
-          over two decades, Babu Maan has released numerous hit albums and
-          singles that have garnered him a massive fan following both in India
-          and abroad.
-        </p>
-      );
-    },
-  },
-
-  {
-    description: "Metallica",
-    title: "For Whom The Bell Tolls",
-    src: "https://assets.aceternity.com/demos/metallica.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Metallica, an iconic American heavy metal band, is renowned for their
-          powerful sound and intense performances that resonate deeply with
-          their audience. Formed in Los Angeles, California, they have become a
-          cultural icon in the heavy metal music industry. <br /> <br /> Their
-          songs often reflect themes of aggression, social issues, and personal
-          struggles, capturing the essence of the heavy metal genre. With a
-          career spanning over four decades, Metallica has released numerous hit
-          albums and singles that have garnered them a massive fan following
-          both in the United States and abroad.
+          Shopify has evolved into a powerhouse for e-commerce brands of all sizes. From
+          startup boutiques to enterprise-level stores, the platform offers a robust
+          ecosystem for scaling sales and managing operations seamlessly. <br /> <br />
+          We specialize in custom Shopify Liquid development and app integrations that
+          transform standard stores into high-converting digital storefronts. By optimizing
+          checkout flows, enhancing mobile responsiveness, and implementing advanced
+          tracking, we help brands unlock their full potential in the global marketplace.
         </p>
       );
     },
   },
   {
-    description: "Led Zeppelin",
-    title: "Stairway To Heaven",
-    src: "https://assets.aceternity.com/demos/led-zeppelin.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
+    description: "CMS Excellence",
+    title: "Modern WordPress for Business",
+    src: "/blogs/wordpress.png",
+    ctaText: "Read More",
+    ctaLink: "#",
     content: () => {
       return (
         <p>
-          Led Zeppelin, a legendary British rock band, is renowned for their
-          innovative sound and profound impact on the music industry. Formed in
-          London in 1968, they have become a cultural icon in the rock music
-          world. <br /> <br /> Their songs often reflect a blend of blues, hard
-          rock, and folk music, capturing the essence of the 1970s rock era.
-          With a career spanning over a decade, Led Zeppelin has released
-          numerous hit albums and singles that have garnered them a massive fan
-          following both in the United Kingdom and abroad.
+          WordPress powers over 40% of the web, and for good reason. However, modern
+          business needs go beyond basic blogging. We leverage WordPress as a high-performance
+          content management system, often utilizing headless architectures for maximum speed. <br /> <br />
+          Our WordPress solutions focus on security, speed, and ease of use for content
+          editors. Whether it's a complex multi-site setup or a high-traffic news portal,
+          we ensure your WordPress site is robust, fast, and optimized for the modern web
+          standards.
         </p>
       );
     },
   },
   {
-    description: "Mustafa Zahid",
-    title: "Toh Phir Aao",
-    src: "https://assets.aceternity.com/demos/toh-phir-aao.jpeg",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
+    description: "Search Optimization",
+    title: "Dominating Search in 2024",
+    src: "/blogs/seo-marketing.png",
+    ctaText: "Read More",
+    ctaLink: "#",
     content: () => {
       return (
         <p>
-          &quot;Aawarapan&quot;, a Bollywood movie starring Emraan Hashmi, is
-          renowned for its intense storyline and powerful performances. Directed
-          by Mohit Suri, the film has become a significant work in the Indian
-          film industry. <br /> <br /> The movie explores themes of love,
-          redemption, and sacrifice, capturing the essence of human emotions and
-          relationships. With a gripping narrative and memorable music,
-          &quot;Aawarapan&quot; has garnered a massive fan following both in
-          India and abroad, solidifying Emraan Hashmi&apos;s status as a
-          versatile actor.
+          SEO is no longer just about keywords; it's about authority, relevance, and
+          technical excellence. As search engines become more sophisticated, your
+          digital strategy must adapt to stay ahead of the curve. <br /> <br />
+          We combine technical SEO with data-driven digital marketing to drive
+          meaningful traffic to your site. From performance optimization and
+          structured data to comprehensive content strategies and PPC management,
+          we provide the insights and execution needed to dominate your industry
+          online.
         </p>
       );
     },

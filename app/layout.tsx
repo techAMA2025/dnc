@@ -4,6 +4,7 @@ import "./globals.css";
 import Noise from "@/components/Noise";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SplashCursor from "@/components/SplashCursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,6 +27,7 @@ export default function RootLayout({
       className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col relative">
+        <SplashCursor />
         <Noise />
         <Navbar />
         {children}
