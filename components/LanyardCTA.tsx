@@ -9,6 +9,9 @@ import * as THREE from 'three';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
+const MeshLineGeometryTag = 'meshLineGeometry' as any;
+const MeshLineMaterialTag = 'meshLineMaterial' as any;
+
 
 function CardFallback({ nodes, materials, texture, isMobile, hover, drag, card, vec }: any) {
   if (nodes?.card) {
@@ -176,8 +179,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       </RigidBody>
 
       <mesh ref={band}>
-        <meshLineGeometry />
-        <meshLineMaterial
+        <MeshLineGeometryTag />
+        <MeshLineMaterialTag
           color="white"
           depthTest={true}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
