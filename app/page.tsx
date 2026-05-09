@@ -1,65 +1,114 @@
-import Image from "next/image";
+'use client';
+
+import Hero from "@/components/Hero";
+import CircularGallery from "@/components/CircularGallery";
+import { motion } from "framer-motion";
+import DraggableCardDemo from "@/components/draggable-card-demo-2";
+import { TestimonialsBackground } from "@/components/TestimonialsBackground";
+import { ExpandableCardDemo } from "@/components/ui/expandable-card-demo-standard";
+import FlowingMenu from "@/components/FlowingMenu";
+import LanyardCTA from "@/components/LanyardCTA";
 
 export default function Home() {
+  const impactItems = [
+    { link: "#", text: "Empowering Global Brands", image: "/impact/global.png" },
+    { link: "#", text: "Driving Digital Evolution", image: "/impact/evolution.png" },
+    { link: "#", text: "Scale Beyond Limits", image: "/impact/scaling.png" },
+    { link: "#", text: "Design That Performs", image: "/impact/performance.png" },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="flex flex-col min-h-screen bg-black">
+      <Hero />
+
+      {/* Projects Section */}
+      <section className="relative w-full h-[90vh] py-24 overflow-hidden bg-white border-t border-black/5">
+        {/* Decorative background glow - adjusted for white bg */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0439B8]/5 blur-[120px] pointer-events-none z-0" />
+
+        <div className="relative z-10 container mx-auto px-6 text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-black mb-6">
+              Featured <span className="text-[#0439B8]">Projects</span>
+            </h2>
+            <p className="text-zinc-600 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+              A curated selection of digital masterpieces that push the boundaries of what&apos;s possible on the web.
+            </p>
+          </motion.div>
         </div>
-      </main>
-    </div>
+
+        <div className="w-full h-[60vh] mt-10">
+          <CircularGallery
+            items={[
+              { image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop", text: "Abstract Flow" },
+              { image: "https://images.unsplash.com/photo-1614850523296-e8c041de4398?q=80&w=2670&auto=format&fit=crop", text: "Digital Wave" },
+              { image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=2535&auto=format&fit=crop", text: "Neon Grid" },
+              { image: "https://images.unsplash.com/photo-1618556450991-2f1af64e8191?q=80&w=2564&auto=format&fit=crop", text: "Modern Minimal" },
+              { image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2670&auto=format&fit=crop", text: "Cyberpunk City" },
+              { image: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=2487&auto=format&fit=crop", text: "Ethereal Glow" },
+            ]}
+            bend={3}
+            textColor="#000000"
+            borderRadius={0.05}
+            font="bold 30px Inter"
+          />
+        </div>
+      </section>
+
+
+      {/* What We Do Section */}
+      <section className="relative w-full bg-white dark:bg-black overflow-hidden border-t border-black/5 dark:border-white/5">
+        <div className="relative z-10 container mx-auto px-6 text-center pt-24 -mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-black dark:text-white mb-6">
+              What We <span className="text-[#0439B8]">Do</span>
+            </h2>
+            <p className="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+              We build immersive digital experiences that captivate, engage, and inspire.
+            </p>
+          </motion.div>
+        </div>
+        <DraggableCardDemo />
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="relative w-full border-t border-white/5 bg-black">
+        <TestimonialsBackground />
+      </section>
+
+      {/* Blogs Section */}
+      <section className="py-24 bg-white dark:bg-neutral-950 border-t border-black/5 dark:border-white/5">
+        <div className="container mx-auto px-6 mb-16 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-black dark:text-white mb-6">
+              Latest <span className="text-[#0439B8]">Insights</span>
+            </h2>
+            <p className="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+              Explore our latest thoughts on design, technology, and the future of digital experiences.
+            </p>
+          </motion.div>
+        </div>
+        <ExpandableCardDemo />
+      </section>
+
+      {/* CTA Section with Lanyard */}
+      <LanyardCTA />
+
+    </main>
   );
 }
