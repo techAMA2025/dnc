@@ -19,7 +19,7 @@ interface ShuffleProps {
   ease?: string;
   threshold?: number;
   rootMargin?: string;
-  tag?: keyof JSX.IntrinsicElements;
+  tag?: React.ElementType;
   textAlign?: 'left' | 'center' | 'right';
   onShuffleComplete?: () => void;
   shuffleTimes?: number;
@@ -394,7 +394,7 @@ const Shuffle = forwardRef<ShuffleRef, ShuffleProps>(({
   const Tag = tag || 'p';
   const commonStyle = { textAlign, ...style };
 
-  return React.createElement(Tag, { ref: containerRef, className: classes, style: commonStyle }, text);
+  return React.createElement(Tag as string, { ref: containerRef as any, className: classes, style: commonStyle }, text);
 });
 
 Shuffle.displayName = 'Shuffle';
