@@ -6,7 +6,7 @@ import StaggeredMenu from './StaggeredMenu';
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Our Work', ariaLabel: 'View our work', link: '/ourwork' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
@@ -36,7 +36,7 @@ const Logo = ({ isDark }: { isDark: boolean }) => (
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isContactPage = pathname === '/contact';
+  const isDarkNavbarPage = pathname === '/contact' || pathname === '/ourwork';
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
@@ -46,11 +46,11 @@ export default function Navbar() {
         socialItems={socialItems}
         displaySocials
         displayItemNumbering={true}
-        menuButtonColor={isContactPage ? "#000000" : "#ffffff"}
+        menuButtonColor={isDarkNavbarPage ? "#000000" : "#ffffff"}
         openMenuButtonColor="#000000"
         changeMenuColorOnOpen={true}
         colors={['#010D48', '#0439B8', '#CDDCFF']}
-        logo={<Logo isDark={isContactPage} />}
+        logo={<Logo isDark={isDarkNavbarPage} />}
         accentColor="#0439B8"
         onMenuOpen={() => console.log('Menu opened')}
         onMenuClose={() => console.log('Menu closed')}

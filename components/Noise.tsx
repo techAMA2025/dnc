@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import './Noise.css';
 
 interface NoiseProps {
@@ -16,8 +17,11 @@ const Noise = ({
   patternAlpha = 30 // Increased for better visibility
 }: NoiseProps) => {
   const grainRef = useRef<HTMLCanvasElement>(null);
+  const pathname = usePathname();
+  const isNoisyPage = pathname !== '/ourwork';
 
   useEffect(() => {
+    if (!isNoisyPage) return;
     const canvas = grainRef.current;
     if (!canvas) return;
 
@@ -68,7 +72,9 @@ const Noise = ({
       window.removeEventListener('resize', resize);
       window.cancelAnimationFrame(animationId);
     };
-  }, [patternRefreshInterval, patternAlpha]);
+  }, [patternRefreshInterval, patternAlpha, isNoisyPage]);
+
+  if (!isNoisyPage) return null;
 
   return (
     <div className="fixed inset-0 z-[0] pointer-events-none">
