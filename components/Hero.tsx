@@ -1,9 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import PixelSnow from './react-bits/PixelSnow';
+import dynamic from 'next/dynamic';
 import LogoLoop from './react-bits/LogoLoop';
 import DecryptedText from './react-bits/DecryptedText';
+
+const PixelSnow = dynamic(() => import('./react-bits/PixelSnow'), {
+  ssr: false,
+});
 
 
 import {

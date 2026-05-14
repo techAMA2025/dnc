@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import {
   DraggableCardBody,
   DraggableCardContainer,
@@ -105,11 +106,12 @@ export default function DraggableCardDemo() {
             {/* Content Container */}
             <div className="p-6 flex flex-col">
               {item.image && (
-                <div className="mb-6 rounded-lg overflow-hidden border border-black/5">
-                  <img
+                <div className="mb-6 rounded-lg overflow-hidden border border-black/5 relative h-32">
+                  <Image
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-32 object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
               )}

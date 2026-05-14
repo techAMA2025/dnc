@@ -36,7 +36,7 @@ const Logo = ({ isDark }: { isDark: boolean }) => (
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isDarkNavbarPage = pathname === '/contact' || pathname === '/ourwork';
+  const isDarkNavbarPage = pathname === '/contact' || pathname === '/ourwork' || pathname === '/about';
 
   return (
     <header className="absolute top-0 left-0 w-full z-50">

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import PixelTransition from './PixelTransition';
 import DecryptedText from './react-bits/DecryptedText';
 import BlurText from './react-bits/BlurText';
@@ -45,11 +46,12 @@ export default function PixelCTA() {
           >
             <PixelTransition
               firstContent={
-                <div className="w-full h-full flex flex-col items-center justify-center bg-[#111] border border-white/10 rounded-[20px] transition-colors group-hover:border-[#0439B8]/50 overflow-hidden">
-                  <img
+                <div className="w-full h-full flex flex-col items-center justify-center bg-[#111] border border-white/10 rounded-[20px] transition-colors group-hover:border-[#0439B8]/50 overflow-hidden relative">
+                  <Image
                     src="/ctacat.jpg"
                     alt="Funny Cat"
-                    className="w-full h-full object-cover transition-all duration-500"
+                    fill
+                    className="object-cover transition-all duration-500"
                   />
                 </div>
               }

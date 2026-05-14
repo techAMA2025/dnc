@@ -1,15 +1,27 @@
 'use client';
 
 import Hero from "@/components/Hero";
-import CircularGallery from "@/components/CircularGallery";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import DraggableCardDemo from "@/components/draggable-card-demo-2";
-import { TestimonialsBackground } from "@/components/TestimonialsBackground";
-import { ExpandableCardDemo } from "@/components/ui/expandable-card-demo-standard";
-import FlowingMenu from "@/components/FlowingMenu";
-import LanyardCTA from "@/components/LanyardCTA";
-import PixelCTA from "@/components/PixelCTA";
-import FAQ from "@/components/FAQ";
+
+const CircularGallery = dynamic(() => import("@/components/CircularGallery"), {
+  ssr: false,
+});
+const DraggableCardDemo = dynamic(() => import("@/components/draggable-card-demo-2"), {
+  ssr: false,
+});
+const ExpandableCardDemo = dynamic(
+  () => import("@/components/ui/expandable-card-demo-standard").then((mod) => mod.ExpandableCardDemo),
+  {
+    ssr: false,
+  }
+);
+const PixelCTA = dynamic(() => import("@/components/PixelCTA"), {
+  ssr: false,
+});
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  ssr: false,
+});
 
 export default function Home() {
   const impactItems = [
