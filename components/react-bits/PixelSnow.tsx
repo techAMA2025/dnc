@@ -19,11 +19,8 @@ void main() {
 }
 `;
 
-// Use GLSL 300 es for WebGL 2 features (uint, uvec3, bitwise ops)
-// Three.js ShaderMaterial on iOS Safari needs explicit version header
-const fragmentShaderGLSL3 = `#version 300 es
-precision mediump float;
-
+// Use GLSL 300 es features (uint, uvec3, bitwise ops) via Three.js GLSL3 mode
+const fragmentShaderGLSL3 = `
 uniform float uTime;
 uniform vec2 uResolution;
 uniform float uFlakeSize;
@@ -39,7 +36,8 @@ uniform float uDensity;
 uniform float uVariant;
 uniform float uDirection;
 
-out vec4 fragColor;
+// pc_fragColor is the standard output for Three.js GLSL3 ShaderMaterial
+layout(location = 0) out vec4 pc_fragColor;
 
 #define PI 3.14159265
 #define PI_OVER_6 0.5235988
@@ -107,7 +105,7 @@ void main() {
   vec3 timeAnim = timeSpeed * 0.1 * vec3(7.0, 8.0, 5.0);
 
   float t = 0.0;
-  for (int i = 0; i < 128; i++) {
+  for (int i = 0; i < 64; i++) {
     if (t >= uFarPlane) break;
     
     vec3 fpos = floor(pos);
@@ -147,7 +145,7 @@ void main() {
           float flakeSizeRatio = uFlakeSize / flakeSize;
           float intensity = exp2(-(t + toIntersection) * invDepthFade) *
                            min(1.0, flakeSizeRatio * flakeSizeRatio) * uBrightness;
-          fragColor = vec4(uColor * pow(vec3(intensity), vec3(uGamma)), 1.0);
+          pc_fragColor = vec4(uColor * pow(vec3(intensity), vec3(uGamma)), 1.0);
           return;
         }
       }
@@ -160,7 +158,7 @@ void main() {
     pos = mix(pos + ray * nextStep, floor(pos + ray * nextStep + 0.5), sel);
   }
 
-  fragColor = vec4(0.0);
+  pc_fragColor = vec4(0.0);
 }
 `;
 
@@ -416,12 +414,9 @@ export default function PixelSnow({
         uVariant: { value: variantValue },
         uDirection: { value: (direction * Math.PI) / 180 }
       },
-      transparent: true
+      transparent: true,
+      glslVersion: isWebGL2 ? '300 es' : null
     };
-    // When using GLSL 300 es, set the glslVersion so Three.js doesn't inject its own version header
-    if (isWebGL2) {
-      materialOptions.glslVersion = '300 es';
-    }
     const material = new ShaderMaterial(materialOptions);
     materialRef.current = material;
 

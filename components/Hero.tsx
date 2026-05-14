@@ -51,13 +51,13 @@ export default function Hero() {
           color="#ffffff"
           flakeSize={0.01}
           minFlakeSize={1.25}
-          pixelResolution={isMobile ? 120 : 200}
-          speed={1.25}
-          density={isMobile ? 0.1 : 0.3}
+          pixelResolution={isMobile ? 100 : 180}
+          speed={1.0}
+          density={isMobile ? 0.05 : 0.15}
           direction={125}
-          brightness={1}
-          depthFade={8}
-          farPlane={20}
+          brightness={0.6}
+          depthFade={10}
+          farPlane={15}
           gamma={0.4545}
           variant="square"
         />
