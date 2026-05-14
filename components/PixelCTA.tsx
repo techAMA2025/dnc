@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PixelTransition from './PixelTransition';
 import DecryptedText from './react-bits/DecryptedText';
@@ -8,6 +8,12 @@ import BlurText from './react-bits/BlurText';
 import { motion } from 'framer-motion';
 
 export default function PixelCTA() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   return (
     <section className="relative w-full py-16 px-16 bg-[#0a0a0a] overflow-hidden flex flex-col items-center justify-center border-t border-white/5">
       {/* Background decoration */}
@@ -51,6 +57,7 @@ export default function PixelCTA() {
                     src="/ctacat.jpg"
                     alt="Funny Cat"
                     fill
+                    sizes="(max-width: 768px) 100vw, 300px"
                     className="object-cover transition-all duration-500"
                   />
                 </div>
@@ -60,10 +67,10 @@ export default function PixelCTA() {
                   START YOUR PROJECT
                 </div>
               }
-              gridSize={12}
+              gridSize={isMobile ? 7 : 12}
               pixelColor="#ffffff"
-              animationStepDuration={0.4}
-              autoTriggerInterval={5000}
+              animationStepDuration={isMobile ? 0.3 : 0.4}
+              autoTriggerInterval={isMobile ? 8000 : 5000}
               className="w-full h-full !w-full !border-0 !rounded-[20px]"
               aspectRatio="100%"
             />

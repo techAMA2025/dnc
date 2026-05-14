@@ -206,30 +206,44 @@ class Media {
     this.onResize();
   }
   createShader() {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const texture = new Texture(this.gl, {
-      generateMipmaps: true
+      generateMipmaps: !isMobile
     });
     this.program = new Program(this.gl, {
       depthTest: false,
       depthWrite: false,
-      vertex: `
-        precision highp float;
-        attribute vec3 position;
-        attribute vec2 uv;
-        uniform mat4 modelViewMatrix;
-        uniform mat4 projectionMatrix;
-        uniform float uTime;
-        uniform float uSpeed;
-        varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          vec3 p = position;
-          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
-        }
-      `,
+      vertex: isMobile
+        ? `
+          precision mediump float;
+          attribute vec3 position;
+          attribute vec2 uv;
+          uniform mat4 modelViewMatrix;
+          uniform mat4 projectionMatrix;
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `
+        : `
+          precision highp float;
+          attribute vec3 position;
+          attribute vec2 uv;
+          uniform mat4 modelViewMatrix;
+          uniform mat4 projectionMatrix;
+          uniform float uTime;
+          uniform float uSpeed;
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            vec3 p = position;
+            p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+          }
+        `,
       fragment: `
-        precision highp float;
+        precision ${isMobile ? 'mediump' : 'highp'} float;
         uniform vec2 uImageSizes;
         uniform vec2 uPlaneSizes;
         uniform sampler2D tMap;
@@ -254,7 +268,6 @@ class Media {
           
           float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
           
-          // Smooth antialiasing for edges
           float edgeSmooth = 0.002;
           float alpha = 1.0 - smoothstep(-edgeSmooth, edgeSmooth, d);
           
@@ -321,8 +334,13 @@ class Media {
     }
 
     this.speed = scroll.current - scroll.last;
-    this.program.uniforms.uTime.value += 0.04;
-    this.program.uniforms.uSpeed.value = this.speed;
+    // Only update displacement uniforms on desktop where the shader uses them
+    if (this.program.uniforms.uTime) {
+      this.program.uniforms.uTime.value += 0.04;
+    }
+    if (this.program.uniforms.uSpeed) {
+      this.program.uniforms.uSpeed.value = this.speed;
+    }
 
     const planeOffset = this.plane.scale.x / 2;
     const viewportOffset = this.viewport.width / 2;
@@ -373,6 +391,9 @@ class App {
   isDown = false;
   start = 0;
   raf!: number;
+  isMobile: boolean;
+  lastFrameTime = 0;
+  frameInterval: number;
 
   boundOnResize!: () => void;
   boundOnWheel!: (e: any) => void;
@@ -404,6 +425,9 @@ class App {
     this.container = container;
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
+    this.isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    // On mobile, target ~30fps instead of 60fps to reduce GPU load
+    this.frameInterval = this.isMobile ? 1000 / 30 : 0;
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
     this.createRenderer();
     this.createCamera();
@@ -417,8 +441,8 @@ class App {
   createRenderer() {
     this.renderer = new Renderer({
       alpha: true,
-      antialias: true,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
+      antialias: !this.isMobile,
+      dpr: Math.min(window.devicePixelRatio || 1, this.isMobile ? 1.5 : 2)
     });
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);
@@ -433,10 +457,9 @@ class App {
     this.scene = new Transform();
   }
   createGeometry() {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     this.planeGeometry = new Plane(this.gl, {
-      heightSegments: isMobile ? 15 : 50,
-      widthSegments: isMobile ? 30 : 100
+      heightSegments: this.isMobile ? 1 : 50,
+      widthSegments: this.isMobile ? 1 : 100
     });
   }
   createMedias(items: GalleryItem[] | undefined, bend = 1, textColor: string, borderRadius: number, font: string) {
@@ -455,7 +478,8 @@ class App {
       { image: `https://picsum.photos/seed/12/800/600?grayscale`, text: 'Palm Trees' }
     ];
     const galleryItems = items && items.length ? items : defaultItems;
-    this.mediasImages = galleryItems.concat(galleryItems);
+    // On mobile, don't duplicate items to halve the number of draw calls
+    this.mediasImages = this.isMobile ? galleryItems : galleryItems.concat(galleryItems);
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
         geometry: this.planeGeometry,
@@ -526,6 +550,15 @@ class App {
     }
   }
   update() {
+    this.raf = window.requestAnimationFrame(this.update.bind(this));
+
+    // Throttle to ~30fps on mobile to reduce GPU load
+    if (this.isMobile && this.frameInterval > 0) {
+      const now = performance.now();
+      if (now - this.lastFrameTime < this.frameInterval) return;
+      this.lastFrameTime = now;
+    }
+
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
     if (this.medias) {
@@ -533,7 +566,6 @@ class App {
     }
     this.renderer.render({ scene: this.scene, camera: this.camera });
     this.scroll.last = this.scroll.current;
-    this.raf = window.requestAnimationFrame(this.update.bind(this));
   }
   addEventListeners() {
     this.boundOnResize = this.onResize.bind(this);

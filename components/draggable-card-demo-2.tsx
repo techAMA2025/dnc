@@ -111,6 +111,7 @@ export default function DraggableCardDemo() {
                     src={item.image}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 768px) 80vw, 300px"
                     className="object-cover"
                   />
                 </div>

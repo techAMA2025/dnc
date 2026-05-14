@@ -76,6 +76,7 @@ export function ExpandableCardDemo() {
                   src={active.src}
                   alt={active.title}
                   fill
+                  sizes="(max-width: 500px) 100vw, 500px"
                   className="sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
                 />
               </motion.div>
@@ -138,6 +139,7 @@ export function ExpandableCardDemo() {
                   src={card.src}
                   alt={card.title}
                   fill
+                  sizes="56px"
                   className="rounded-lg object-cover object-top"
                 />
               </motion.div>
