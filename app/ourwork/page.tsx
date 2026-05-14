@@ -209,7 +209,7 @@ export default function OurWork() {
         </div>
 
         {/* Grid Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
           {filteredItems.map((item, index) => (
             <motion.div
               key={item.id}
@@ -223,7 +223,7 @@ export default function OurWork() {
                 <div className="relative flex flex-col">
                   
                   {/* Image Section with Light Blue Padding */}
-                  <div className="bg-[#E2EDF8] p-4 rounded-t-sm">
+                  <div className="bg-[#E2EDF8] p-2 md:p-4 rounded-t-sm">
                     <div className="relative aspect-square md:aspect-[4/3] bg-white rounded-sm overflow-hidden">
                       <Image 
                         src={item.image} 
@@ -237,9 +237,9 @@ export default function OurWork() {
                   </div>
 
                   {/* Footer Bar */}
-                  <div className="bg-[#E2EDF8] px-5 py-5 rounded-b-sm flex justify-between items-center mt-[2px]">
-                    <span className="text-black font-semibold text-xl tracking-tight">{item.title}</span>
-                    <span className="text-zinc-500 text-sm font-medium">{item.category}</span>
+                  <div className="bg-[#E2EDF8] px-3 py-4 md:px-5 md:py-5 rounded-b-sm flex flex-col md:flex-row justify-between items-start md:items-center mt-[2px] gap-1 md:gap-0">
+                    <span className="text-black font-semibold text-sm md:text-xl tracking-tight">{item.title}</span>
+                    <span className="text-zinc-500 text-[10px] md:text-sm font-medium">{item.category}</span>
                   </div>
                 </div>
               </a>
