@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const AboutHero = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-white">
+    <section className="relative w-full h-[calc(100vh-6rem)] md:h-[calc(100vh-8rem)] mt-24 md:mt-32 overflow-hidden bg-white">
       {/* Desktop Hero Image */}
       <div className="hidden md:block relative w-full h-full">
         <Image

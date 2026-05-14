@@ -1,8 +1,9 @@
+
 'use client';
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 const playgroundItems = [
   { icon: '/about/Frame 572 1.svg', label: 'Mobile App' },
@@ -17,7 +18,7 @@ const playgroundItems = [
   { icon: '/about/Frame 572.svg', label: 'See all\nProjects' },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -26,7 +27,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
@@ -37,7 +38,7 @@ const itemVariants = {
 
 export default function CreativePlayground() {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-12 md:py-12 bg-white">
       <div className="container mx-auto px-6 max-w-5xl">
         {/* Heading */}
         <motion.h2
