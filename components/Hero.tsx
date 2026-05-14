@@ -44,7 +44,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative w-full h-screen h-[100dvh] min-h-[800px] flex items-center justify-center overflow-hidden bg-black">
       {/* Pixel Snow Background */}
       <div className="absolute inset-0 z-0">
         <PixelSnow

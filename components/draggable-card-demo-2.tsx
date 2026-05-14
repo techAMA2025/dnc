@@ -72,11 +72,11 @@ export default function DraggableCardDemo() {
 
   return (
     <DraggableCardContainer className="relative flex min-h-[100vh] w-full items-center justify-center overflow-hidden py-20">
-      {/* Background Decor */}
+      {/* Background Decor - gradients instead of blur for iOS performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[10%] w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full" />
-        <div className="absolute bottom-[10%] right-[10%] w-96 h-96 bg-purple-500/10 blur-[100px] rounded-full" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/5 blur-[120px] rounded-full" />
+        <div className="absolute top-[10%] left-[10%] w-64 h-64 rounded-full" style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)' }} />
+        <div className="absolute bottom-[10%] right-[10%] w-96 h-96 rounded-full" style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.05) 0%, transparent 70%)' }} />
       </div>
 
       {/* Background Text */}

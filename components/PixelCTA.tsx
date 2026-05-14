@@ -16,8 +16,8 @@ export default function PixelCTA() {
 
   return (
     <section className="relative w-full py-16 px-16 bg-[#0a0a0a] overflow-hidden flex flex-col items-center justify-center border-t border-white/5">
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-[#0439B8]/10 blur-[150px] rounded-full pointer-events-none" />
+      {/* Background decoration - gradient instead of blur for iOS performance */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(4,57,184,0.1) 0%, transparent 60%)' }} />
 
       <div className="relative z-10 container mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
         {/* Left Column - 70% Text */}

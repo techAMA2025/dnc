@@ -94,6 +94,7 @@ class Title {
     const geometry = new Plane(this.gl);
     const program = new Program(this.gl, {
       vertex: `
+        precision highp float;
         attribute vec3 position;
         attribute vec2 uv;
         uniform mat4 modelViewMatrix;
@@ -105,7 +106,7 @@ class Title {
         }
       `,
       fragment: `
-        precision highp float;
+        precision mediump float;
         uniform sampler2D tMap;
         varying vec2 vUv;
         void main() {
@@ -442,10 +443,20 @@ class App {
     this.renderer = new Renderer({
       alpha: true,
       antialias: !this.isMobile,
-      dpr: Math.min(window.devicePixelRatio || 1, this.isMobile ? 1.5 : 2)
+      dpr: Math.min(window.devicePixelRatio || 1, this.isMobile ? 1.5 : 2),
+      powerPreference: 'low-power'
     });
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);
+    // Handle iOS WebGL context loss gracefully
+    this.gl.canvas.addEventListener('webglcontextlost', (e: Event) => {
+      e.preventDefault();
+      window.cancelAnimationFrame(this.raf);
+    }, false);
+    this.gl.canvas.addEventListener('webglcontextrestored', () => {
+      this.onResize();
+      this.update();
+    }, false);
     this.container.appendChild(this.gl.canvas);
   }
   createCamera() {

@@ -19,7 +19,9 @@ void main() {
 }
 `;
 
-const fragmentShader = `
+// Use GLSL 300 es for WebGL 2 features (uint, uvec3, bitwise ops)
+// Three.js ShaderMaterial on iOS Safari needs explicit version header
+const fragmentShaderGLSL3 = `#version 300 es
 precision mediump float;
 
 uniform float uTime;
@@ -37,7 +39,8 @@ uniform float uDensity;
 uniform float uVariant;
 uniform float uDirection;
 
-// Precomputed constants
+out vec4 fragColor;
+
 #define PI 3.14159265
 #define PI_OVER_6 0.5235988
 #define PI_OVER_3 1.0471976
@@ -47,16 +50,12 @@ uniform float uDirection;
 #define M3 3299493293U
 #define F0 2.3283064e-10
 
-// Optimized hash - inline multiplication
 #define hash(n) (n * (n ^ (n >> 15)))
 #define coord3(p) (uvec3(p).x * M1 ^ uvec3(p).y * M2 ^ uvec3(p).z * M3)
 
-// Precomputed camera basis vectors (normalized vec3(1,1,1), vec3(1,0,-1))
 const vec3 camK = vec3(0.57735027, 0.57735027, 0.57735027);
 const vec3 camI = vec3(0.70710678, 0.0, -0.70710678);
 const vec3 camJ = vec3(-0.40824829, 0.81649658, -0.40824829);
-
-// Precomputed branch direction
 const vec2 b1d = vec2(0.574, 0.819);
 
 vec3 hash3(uint n) {
@@ -78,7 +77,6 @@ float snowflakeDist(vec2 p) {
 }
 
 void main() {
-  // Precompute reciprocals to avoid division
   float invPixelRes = 1.0 / uPixelResolution;
   float pixelSize = max(1.0, floor(0.5 + uResolution.x * invPixelRes));
   float invPixelSize = 1.0 / pixelSize;
@@ -90,21 +88,18 @@ void main() {
   vec3 ray = normalize(vec3((fragCoord - res * 0.5) * invResX, 1.0));
   ray = ray.x * camI + ray.y * camJ + ray.z * camK;
 
-  // Precompute time-based values
   float timeSpeed = uTime * uSpeed;
   float windX = cos(uDirection) * 0.4;
   float windY = sin(uDirection) * 0.4;
   vec3 camPos = (windX * camI + windY * camJ + 0.1 * camK) * timeSpeed;
   vec3 pos = camPos;
 
-  // Precompute ray reciprocal for strides
   vec3 absRay = max(abs(ray), vec3(0.001));
   vec3 strides = 1.0 / absRay;
   vec3 raySign = step(ray, vec3(0.0));
   vec3 phase = fract(pos) * strides;
   phase = mix(strides - phase, phase, raySign);
 
-  // Precompute for intersection test
   float rayDotCamK = dot(ray, camK);
   float invRayDotCamK = 1.0 / rayDotCamK;
   float invDepthFade = 1.0 / uDepthFade;
@@ -122,7 +117,6 @@ void main() {
     if (cellHash < uDensity) {
       vec3 h = hash3(cellCoord);
       
-      // Optimized flake position calculation
       vec3 sinArg1 = fpos.yzx * 0.073;
       vec3 sinArg2 = fpos.zxy * 0.27;
       vec3 flakePos = 0.5 - 0.5 * cos(4.0 * sin(sinArg1) + 4.0 * sin(sinArg2) + 2.0 * h + timeAnim);
@@ -139,7 +133,6 @@ void main() {
         float depth = dot(flakePos - camPos, camK);
         float flakeSize = max(uFlakeSize, uMinFlakeSize * depth * halfInvResX);
         
-        // Avoid branching with step functions where possible
         float dist;
         if (uVariant < 0.5) {
           dist = max(testUV.x, testUV.y);
@@ -149,6 +142,121 @@ void main() {
           float invFlakeSize = 1.0 / flakeSize;
           dist = snowflakeDist(vec2(testX, testY) * invFlakeSize) * flakeSize;
         }
+
+        if (dist < flakeSize) {
+          float flakeSizeRatio = uFlakeSize / flakeSize;
+          float intensity = exp2(-(t + toIntersection) * invDepthFade) *
+                           min(1.0, flakeSizeRatio * flakeSizeRatio) * uBrightness;
+          fragColor = vec4(uColor * pow(vec3(intensity), vec3(uGamma)), 1.0);
+          return;
+        }
+      }
+    }
+
+    float nextStep = min(min(phase.x, phase.y), phase.z);
+    vec3 sel = step(phase, vec3(nextStep));
+    phase = phase - nextStep + strides * sel;
+    t += nextStep;
+    pos = mix(pos + ray * nextStep, floor(pos + ray * nextStep + 0.5), sel);
+  }
+
+  fragColor = vec4(0.0);
+}
+`;
+
+// WebGL 1 fallback for older iOS devices (no uint support)
+const fragmentShaderGLSL1 = `
+precision mediump float;
+
+uniform float uTime;
+uniform vec2 uResolution;
+uniform float uFlakeSize;
+uniform float uMinFlakeSize;
+uniform float uPixelResolution;
+uniform float uSpeed;
+uniform float uDepthFade;
+uniform float uFarPlane;
+uniform vec3 uColor;
+uniform float uBrightness;
+uniform float uGamma;
+uniform float uDensity;
+uniform float uVariant;
+uniform float uDirection;
+
+#define PI 3.14159265
+
+const vec3 camK = vec3(0.57735027, 0.57735027, 0.57735027);
+const vec3 camI = vec3(0.70710678, 0.0, -0.70710678);
+const vec3 camJ = vec3(-0.40824829, 0.81649658, -0.40824829);
+
+// Simple float-based hash for WebGL 1 compatibility
+float hash1(vec3 p) {
+  p = fract(p * vec3(443.897, 441.423, 437.195));
+  p += dot(p, p.yzx + 19.19);
+  return fract((p.x + p.y) * p.z);
+}
+
+vec3 hash3v(vec3 p) {
+  return vec3(hash1(p), hash1(p + 31.73), hash1(p + 67.51));
+}
+
+void main() {
+  float invPixelRes = 1.0 / uPixelResolution;
+  float pixelSize = max(1.0, floor(0.5 + uResolution.x * invPixelRes));
+  float invPixelSize = 1.0 / pixelSize;
+  
+  vec2 fragCoord = floor(gl_FragCoord.xy * invPixelSize);
+  vec2 res = uResolution * invPixelSize;
+  float invResX = 1.0 / res.x;
+
+  vec3 ray = normalize(vec3((fragCoord - res * 0.5) * invResX, 1.0));
+  ray = ray.x * camI + ray.y * camJ + ray.z * camK;
+
+  float timeSpeed = uTime * uSpeed;
+  float windX = cos(uDirection) * 0.4;
+  float windY = sin(uDirection) * 0.4;
+  vec3 camPos = (windX * camI + windY * camJ + 0.1 * camK) * timeSpeed;
+  vec3 pos = camPos;
+
+  vec3 absRay = max(abs(ray), vec3(0.001));
+  vec3 strides = 1.0 / absRay;
+  vec3 raySign = step(ray, vec3(0.0));
+  vec3 phase = fract(pos) * strides;
+  phase = mix(strides - phase, phase, raySign);
+
+  float rayDotCamK = dot(ray, camK);
+  float invRayDotCamK = 1.0 / rayDotCamK;
+  float invDepthFade = 1.0 / uDepthFade;
+  float halfInvResX = 0.5 * invResX;
+  vec3 timeAnim = timeSpeed * 0.1 * vec3(7.0, 8.0, 5.0);
+
+  float t = 0.0;
+  for (int i = 0; i < 64; i++) {
+    if (t >= uFarPlane) break;
+    
+    vec3 fpos = floor(pos);
+    float cellHash = hash1(fpos);
+
+    if (cellHash < uDensity) {
+      vec3 h = hash3v(fpos);
+      
+      vec3 sinArg1 = fpos.yzx * 0.073;
+      vec3 sinArg2 = fpos.zxy * 0.27;
+      vec3 flakePos = 0.5 - 0.5 * cos(4.0 * sin(sinArg1) + 4.0 * sin(sinArg2) + 2.0 * h + timeAnim);
+      flakePos = flakePos * 0.8 + 0.1 + fpos;
+
+      float toIntersection = dot(flakePos - pos, camK) * invRayDotCamK;
+      
+      if (toIntersection > 0.0) {
+        vec3 testPos = pos + ray * toIntersection - flakePos;
+        float testX = dot(testPos, camI);
+        float testY = dot(testPos, camJ);
+        vec2 testUV = abs(vec2(testX, testY));
+        
+        float depth = dot(flakePos - camPos, camK);
+        float flakeSize = max(uFlakeSize, uMinFlakeSize * depth * halfInvResX);
+        
+        float dist = max(testUV.x, testUV.y);
 
         if (dist < flakeSize) {
           float flakeSizeRatio = uFlakeSize / flakeSize;
@@ -261,26 +369,37 @@ export default function PixelSnow({
     const container = containerRef.current;
     if (!container) return;
 
+    // Detect iOS for special handling
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isMobile = window.innerWidth < 768;
+
     const scene = new Scene();
     const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const renderer = new WebGLRenderer({
       antialias: false,
       alpha: true,
       premultipliedAlpha: false,
-      powerPreference: 'high-performance',
+      powerPreference: isIOS ? 'low-power' : 'high-performance',
       stencil: false,
       depth: false
     });
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Lower pixel ratio on iOS to reduce GPU memory pressure
+    const maxDpr = isIOS ? (isMobile ? 1 : 1.5) : 2;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
     renderer.setSize(container.offsetWidth, container.offsetHeight);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    const material = new ShaderMaterial({
+    // Check if WebGL 2 is available (needed for GLSL 300 es / uint operations)
+    const isWebGL2 = renderer.capabilities.isWebGL2;
+    const chosenFragShader = isWebGL2 ? fragmentShaderGLSL3 : fragmentShaderGLSL1;
+    // For GLSL 300 es, Three.js needs glslVersion set
+    const materialOptions: any = {
       vertexShader,
-      fragmentShader,
+      fragmentShader: chosenFragShader,
       uniforms: {
         uTime: { value: 0 },
         uResolution: { value: new Vector2(container.offsetWidth, container.offsetHeight) },
@@ -298,7 +417,12 @@ export default function PixelSnow({
         uDirection: { value: (direction * Math.PI) / 180 }
       },
       transparent: true
-    });
+    };
+    // When using GLSL 300 es, set the glslVersion so Three.js doesn't inject its own version header
+    if (isWebGL2) {
+      materialOptions.glslVersion = '300 es';
+    }
+    const material = new ShaderMaterial(materialOptions);
     materialRef.current = material;
 
     const geometry = new PlaneGeometry(2, 2);
@@ -372,7 +496,7 @@ export default function PixelSnow({
   return (
     <div
       ref={containerRef}
-      className={`absolute inset-0 w-full h-full transform-gpu will-change-transform backface-hidden ${className}`}
+      className={`absolute inset-0 w-full h-full ${className}`}
       style={style}
     />
   );

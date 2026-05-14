@@ -40,9 +40,9 @@ export default function Home() {
       <Hero />
 
       {/* Projects Section */}
-      <section className="relative w-full h-[110vh] py-12 overflow-hidden bg-white border-t border-black/5">
-        {/* Decorative background glow - adjusted for white bg */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0439B8]/5 blur-[120px] pointer-events-none z-0" />
+      <section className="relative w-full min-h-[110vh] min-h-[110dvh] py-12 overflow-hidden bg-white border-t border-black/5">
+        {/* Decorative background glow - uses gradient instead of blur for iOS performance */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(4,57,184,0.05) 0%, transparent 70%)' }} />
 
         <div className="relative z-10 container mx-auto px-6 text-center mb-12">
           <motion.div
@@ -60,7 +60,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <div className="w-full h-[85vh] -mt-20">
+        <div className="w-full h-[85vh] h-[85dvh] -mt-20">
           <CircularGallery
             items={[
               { image: "/projects/project-1.jpg", text: "Innovation Hub" },
@@ -85,8 +85,8 @@ export default function Home() {
 
       {/* What We Do Section */}
       <section className="relative w-full bg-white overflow-hidden border-t border-black/5">
-        {/* Decorative background glow - same as Projects section */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] blur-[120px] pointer-events-none z-0" />
+        {/* Decorative background glow - uses gradient instead of blur for iOS performance */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(4,57,184,0.03) 0%, transparent 70%)' }} />
 
         <div className="relative z-10 container mx-auto px-6 text-center pt-12 -mb-20">
           <motion.div
