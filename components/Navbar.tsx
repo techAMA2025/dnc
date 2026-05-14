@@ -45,7 +45,7 @@ export default function Navbar() {
         items={menuItems}
         socialItems={socialItems}
         displaySocials
-        displayItemNumbering={true}
+        displayItemNumbering={false}
         menuButtonColor={isDarkNavbarPage ? "#000000" : "#ffffff"}
         openMenuButtonColor="#000000"
         changeMenuColorOnOpen={true}

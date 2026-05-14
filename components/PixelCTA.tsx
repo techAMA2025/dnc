@@ -26,7 +26,7 @@ export default function PixelCTA() {
               delay={150}
               animateBy="words"
               direction="top"
-              className="text-4xl md:text-7xl font-bold tracking-tight text-white mb-6"
+              className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6"
             />
             <p className="text-white text-lg md:text-2xl max-w-3xl font-light leading-relaxed">
               Let&apos;s create a website that looks premium, loads fast, and helps your business grow online.
@@ -47,16 +47,15 @@ export default function PixelCTA() {
               firstContent={
                 <div className="w-full h-full flex flex-col items-center justify-center bg-[#111] border border-white/10 rounded-[20px] transition-colors group-hover:border-[#0439B8]/50 overflow-hidden">
                   <img
-                    src="/funny_cat.jpeg"
+                    src="/ctacat.jpg"
                     alt="Funny Cat"
                     className="w-full h-full object-cover transition-all duration-500"
                   />
                 </div>
               }
               secondContent={
-                <div className="w-full h-full flex text-black flex-col items-center justify-center bg-[#ffffff] rounded-[20px] p-6 text-center cursor-pointer shadow-[0_0_50px_rgba(4,57,184,0.3)] text-5xl">
+                <div className="w-full h-full flex text-black flex-col items-center justify-center bg-[#ffffff] rounded-[20px] p-6 text-center cursor-pointer shadow-[0_0_50px_rgba(4,57,184,0.3)] text-5xl font-black tracking-tighter uppercase leading-none">
                   START YOUR PROJECT
-
                 </div>
               }
               gridSize={12}
