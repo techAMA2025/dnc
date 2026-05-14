@@ -39,7 +39,7 @@ export default function Navbar() {
   const isDarkNavbarPage = pathname === '/contact' || pathname === '/ourwork';
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+    <header className="absolute top-0 left-0 w-full z-50">
       <StaggeredMenu
         position="right"
         items={menuItems}
@@ -54,9 +54,9 @@ export default function Navbar() {
         accentColor="#0439B8"
         onMenuOpen={() => console.log('Menu opened')}
         onMenuClose={() => console.log('Menu closed')}
-        isFixed={true}
+        isFixed={false}
       />
-    </div>
+    </header>
   );
 }
 

@@ -185,7 +185,7 @@ const ContactHero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`${activeSlide.bgColor} rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border border-gray-100 max-w-[1300px] mx-auto p-8 md:px-16 md:py-10 transition-colors duration-500`}
+        className={`${activeSlide.bgColor} rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border border-gray-100 max-w-[1300px] mx-auto p-6 md:px-16 md:py-10 transition-colors duration-500`}
       >
         {/* Step Indicator Inside Card */}
         <div className="flex items-center justify-between mb-12 max-w-5xl mx-auto">
@@ -199,7 +199,7 @@ const ContactHero = () => {
                 <React.Fragment key={slide.id}>
                   <div className="relative">
                     <div 
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
+                      className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
                         isActive 
                           ? isDark ? "bg-white text-[#000B3D]" : "bg-[#000B3D] text-white border-4 border-white shadow-[0_0_0_2px_#000B3D]" 
                           : isPast 
@@ -210,14 +210,14 @@ const ContactHero = () => {
                       {index === 0 && isActive && activeSlide.id === 1 ? (
                         <div className="w-5 h-5 rounded-full border-[2.5px] border-white"></div>
                       ) : (
-                        <span className="font-medium text-base">
+                        <span className="font-medium text-sm md:text-base">
                           {slide.id}
                         </span>
                       )}
                     </div>
                   </div>
                   {index < slides.length - 1 && (
-                    <div className={`flex-1 h-px border-t-2 border-dashed mx-4 ${isDark ? "border-white/30" : "border-gray-300"}`}></div>
+                    <div className={`flex-1 h-px border-t-2 border-dashed mx-2 md:mx-4 ${isDark ? "border-white/30" : "border-gray-300"}`}></div>
                   )}
                 </React.Fragment>
               );
@@ -233,10 +233,10 @@ const ContactHero = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="flex flex-col md:flex-row items-center gap-16"
+              className="flex flex-col md:flex-row items-center gap-8 md:gap-16"
             >
               <div className="flex-[1.2] space-y-6 w-full">
-                <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold ${activeSlide.textColor} leading-[1.1] tracking-tight`}>
+                <h1 className={`text-3xl md:text-5xl lg:text-6xl font-bold ${activeSlide.textColor} leading-[1.1] tracking-tight`}>
                   {activeSlide.title}
                 </h1>
                 
@@ -256,7 +256,7 @@ const ContactHero = () => {
 
                       return (
                         <div key={idx} className="space-y-2">
-                          <label className={`block text-sm font-medium ${activeSlide.textColor}`}>
+                          <label className={`block text-xs md:text-sm font-medium ${activeSlide.textColor}`}>
                             {field.label}
                           </label>
                           <input 
@@ -264,7 +264,7 @@ const ContactHero = () => {
                             value={val}
                             onChange={(e) => handleInputChange(field.label, e.target.value)}
                             placeholder={field.placeholder}
-                            className={`w-full px-6 py-4 rounded-full border-2 transition-all outline-none ${
+                            className={`w-full px-5 py-3 md:px-6 md:py-4 rounded-full border-2 transition-all outline-none ${
                               activeSlide.bgColor === "bg-[#000B3D]" 
                                 ? "bg-white text-black border-transparent focus:ring-2 focus:ring-blue-400" 
                                 : "bg-white text-black border-blue-100 focus:border-[#000B3D]"
@@ -275,14 +275,14 @@ const ContactHero = () => {
                     })}
                   </div>
                 ) : (
-                  <p className={`${activeSlide.subTextColor} text-lg md:text-xl font-normal leading-relaxed max-w-xl`}>
+                  <p className={`${activeSlide.subTextColor} text-base md:text-xl font-normal leading-relaxed max-w-xl`}>
                     {activeSlide.description}
                   </p>
                 )}
               </div>
               
-              <div className="flex-1 relative w-full hidden md:block">
-                <div className="rounded-[2.5rem] overflow-hidden shadow-xl h-[320px] relative">
+              <div className="flex-1 relative w-full block">
+                <div className="rounded-[2.5rem] overflow-hidden shadow-xl h-[240px] md:h-[320px] relative">
                   <Image 
                     src={activeSlide.image}
                     alt={activeSlide.title}
@@ -307,7 +307,7 @@ const ContactHero = () => {
           <button 
             onClick={handleNext}
             disabled={isSubmitting}
-            className={`px-12 py-3.5 rounded-full font-bold text-base transition-all shadow-xl active:scale-95 flex items-center gap-2 ${
+            className={`px-8 py-3 md:px-12 md:py-3.5 rounded-full font-bold text-sm md:text-base transition-all shadow-xl active:scale-95 flex items-center gap-2 ${
               activeSlide.bgColor === "bg-[#000B3D]" 
                 ? "bg-white text-[#000B3D] hover:bg-white/90" 
                 : "bg-[#000B3D] text-white hover:bg-[#000B3D]/90"

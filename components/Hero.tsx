@@ -80,9 +80,13 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: '#032e96' }}
+              whileHover={{ 
+                scale: 1.05, 
+                backgroundColor: '#0052FF',
+                boxShadow: '0 0 30px rgba(0, 82, 255, 0.5)'
+              }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-[#0439B8] text-white rounded-full font-bold text-lg shadow-2xl shadow-[#0439B8]/20 transition-all"
+              className="px-8 py-4 bg-gradient-to-r from-[#0062FF] to-[#0439B8] text-white rounded-full font-bold text-lg shadow-[0_0_20px_rgba(0,98,255,0.3)] transition-all duration-300"
             >
               Build & Flex
             </motion.button>
