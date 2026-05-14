@@ -6,18 +6,22 @@ import { motion } from "framer-motion";
 
 const CircularGallery = dynamic(() => import("@/components/CircularGallery"), {
   ssr: false,
+  loading: () => <div className="w-full h-[85vh] bg-zinc-50/50 animate-pulse flex items-center justify-center text-zinc-400">Loading Gallery...</div>
 });
 const DraggableCardDemo = dynamic(() => import("@/components/draggable-card-demo-2"), {
   ssr: false,
+  loading: () => <div className="w-full h-[100vh] bg-white animate-pulse" />
 });
 const ExpandableCardDemo = dynamic(
   () => import("@/components/ui/expandable-card-demo-standard").then((mod) => mod.ExpandableCardDemo),
   {
     ssr: false,
+    loading: () => <div className="w-full h-96 bg-zinc-50 animate-pulse" />
   }
 );
 const PixelCTA = dynamic(() => import("@/components/PixelCTA"), {
   ssr: false,
+  loading: () => <div className="w-full h-64 bg-[#0439B8]/10 animate-pulse" />
 });
 const FAQ = dynamic(() => import("@/components/FAQ"), {
   ssr: false,

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import LogoLoop from './react-bits/LogoLoop';
 import DecryptedText from './react-bits/DecryptedText';
 
@@ -33,6 +34,15 @@ const partnerLogos = [
 ];
 
 export default function Hero() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section className="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-black">
       {/* Pixel Snow Background */}
@@ -41,9 +51,9 @@ export default function Hero() {
           color="#ffffff"
           flakeSize={0.01}
           minFlakeSize={1.25}
-          pixelResolution={200}
+          pixelResolution={isMobile ? 120 : 200}
           speed={1.25}
-          density={0.3}
+          density={isMobile ? 0.1 : 0.3}
           direction={125}
           brightness={1}
           depthFade={8}
