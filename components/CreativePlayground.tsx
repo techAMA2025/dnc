@@ -5,6 +5,8 @@ import React from 'react';
 import Image from 'next/image';
 import { motion, Variants } from 'framer-motion';
 
+import ProfileCard from './ProfileCard';
+
 const playgroundItems = [
   { icon: '/about/Frame 572 1.svg', label: 'Mobile App' },
   { icon: '/about/Frame 572-2 1.svg', label: 'Web App' },
@@ -39,7 +41,7 @@ const itemVariants: Variants = {
 export default function CreativePlayground() {
   return (
     <section className="py-12 md:py-12 bg-white">
-      <div className="container mx-auto px-6 max-w-5xl">
+      <div className="container mx-auto px-6 max-w-7xl">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -57,7 +59,7 @@ export default function CreativePlayground() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-3 sm:grid-cols-5 gap-x-6 gap-y-10 md:gap-x-10 md:gap-y-14"
+          className="grid grid-cols-3 sm:grid-cols-5 gap-x-6 gap-y-10 md:gap-x-10 md:gap-y-14 max-w-5xl mx-auto"
         >
           {playgroundItems.map((item, index) => (
             <motion.div
@@ -82,6 +84,46 @@ export default function CreativePlayground() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Team Section */}
+        <div className="py-24">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#010D48] text-center mb-16 md:mb-24"
+          >
+            Meet the Tiny Team
+          </motion.h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
+            <ProfileCard 
+              name="Javi A. Torres" 
+              title="Software Engineer" 
+              handle="javicodes"
+              avatarUrl="https://i.pravatar.cc/600?img=11"
+            />
+            <ProfileCard 
+              name="David H." 
+              title="UI/UX Designer" 
+              handle="davidui"
+              avatarUrl="https://i.pravatar.cc/600?img=12"
+            />
+            <ProfileCard 
+              name="Alex R." 
+              title="Frontend Developer" 
+              handle="alexfrontend"
+              avatarUrl="https://i.pravatar.cc/600?img=13"
+            />
+            <ProfileCard 
+              name="Sarah M." 
+              title="Brand Designer" 
+              handle="sarahbrand"
+              avatarUrl="https://i.pravatar.cc/600?img=14"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

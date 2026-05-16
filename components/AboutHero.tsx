@@ -10,7 +10,7 @@ const AboutHero = () => {
       {/* Desktop Hero Image */}
       <div className="hidden md:block relative w-full h-full">
         <Image
-          src="/about/hero-desktop.svg"
+          src="/DEsktop.svg"
           alt="About Hero Desktop"
           fill
           priority
@@ -21,7 +21,7 @@ const AboutHero = () => {
       {/* Mobile Hero Image */}
       <div className="block md:hidden relative w-full h-full">
         <Image
-          src="/about/hero-phone.svg"
+          src="/Mobile.svg"
           alt="About Hero Mobile"
           fill
           priority
