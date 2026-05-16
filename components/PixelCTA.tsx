@@ -70,7 +70,7 @@ export default function PixelCTA() {
               gridSize={isMobile ? 7 : 12}
               pixelColor="#ffffff"
               animationStepDuration={isMobile ? 0.3 : 0.4}
-              autoTriggerInterval={isMobile ? 8000 : 5000}
+              autoTriggerInterval={isMobile ? 3000 : 0}
               className="w-full h-full !w-full !border-0 !rounded-[20px]"
               aspectRatio="100%"
             />
