@@ -21,12 +21,12 @@ export default function ServicesStats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-[#010D48] text-white p-8 md:p-10 rounded-[32px] md:rounded-[40px] flex flex-col justify-between min-h-[220px] md:min-h-[260px] group transition-transform hover:scale-[1.02]"
+              className="bg-[#010D48] text-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] flex flex-col justify-between min-h-[200px] md:min-h-[260px] group transition-transform hover:scale-[1.02]"
             >
-              <div className="text-sm md:text-base font-medium opacity-80 tracking-wide uppercase">
+              <div className="text-xs md:text-base font-medium opacity-80 tracking-wide uppercase">
                 {stat.label}
               </div>
-              <div className="text-6xl md:text-8xl font-black tracking-tighter leading-none">
+              <div className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-none">
                 {stat.value}
               </div>
             </motion.div>

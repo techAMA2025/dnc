@@ -80,7 +80,7 @@ export default function ServicesHero() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl md:text-8xl font-black tracking-tighter leading-none text-black"
+              className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter leading-none text-black"
             >
               OUR DIGITAL <br />
               <span className="text-[#0439B8]">SOLUTIONS.</span>
@@ -93,7 +93,7 @@ export default function ServicesHero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="w-full md:w-[450px]"
           >
-            <p className="text-zinc-600 text-lg md:text-xl leading-relaxed">
+            <p className="text-zinc-600 text-base sm:text-lg md:text-xl leading-relaxed">
               We’re a team of designers, developers, and strategists creating modern digital experiences that help brands grow, connect, and stand out online.
             </p>
           </motion.div>
@@ -113,55 +113,26 @@ export default function ServicesHero() {
                   onClick={() => !isExpanded && setExpandedId(service.id)}
                   className={`group relative overflow-hidden cursor-pointer will-change-transform ${
                     isExpanded 
-                      ? 'bg-[#010D48] text-white rounded-[40px] p-6 md:p-10' 
+                      ? 'bg-[#010D48] text-white rounded-[32px] md:rounded-[40px] p-6 md:p-10' 
                       : 'bg-[#F4F8FF] text-[#010D48] rounded-full p-4 md:p-6 hover:bg-[#E8F1FF]'
                   }`}
                 >
-                  <div className="relative z-10 flex flex-col md:flex-row justify-between">
-                    <div className="flex-1 pr-4">
-                      {/* Header: ID, Bullet, Title */}
-                      <motion.div layout="position" className="flex items-center gap-4 md:gap-6 mb-4 md:mb-6">
-                        <motion.span layout="position" className={`font-bold transition-colors duration-300 ${isExpanded ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Header Row: Always parallel on mobile and desktop */}
+                    <div className="flex flex-row justify-between items-start md:items-center">
+                      {/* Left: ID, Bullet, Title */}
+                      <motion.div layout="position" className="flex items-center gap-3 md:gap-6">
+                        <motion.span layout="position" className={`font-bold transition-colors duration-300 ${isExpanded ? 'text-xl md:text-4xl' : 'text-lg md:text-2xl'}`}>
                           {service.id}
                         </motion.span>
-                        <motion.span layout="position" className={`w-2 h-2 rounded-full ${isExpanded ? 'bg-white' : 'bg-black'}`}></motion.span>
-                        <motion.h3 layout="position" className={`font-medium tracking-tight transition-colors duration-300 ${isExpanded ? 'text-2xl md:text-4xl' : 'text-xl md:text-3xl'}`}>
+                        <motion.span layout="position" className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${isExpanded ? 'bg-white' : 'bg-black'}`}></motion.span>
+                        <motion.h3 layout="position" className={`font-medium tracking-tight transition-colors duration-300 ${isExpanded ? 'text-xl md:text-4xl' : 'text-lg md:text-3xl'}`}>
                           {service.title}
                         </motion.h3>
                       </motion.div>
 
-                      {/* Expanded Content - Simple fade for better performance */}
-                      <AnimatePresence>
-                        {isExpanded && (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="max-w-xl"
-                          >
-                            <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-8">
-                              {service.description}
-                            </p>
-                            
-                            <div className="flex flex-wrap gap-2 pb-2">
-                              {service.tags.map((tag) => (
-                                <span 
-                                  key={tag} 
-                                  className="px-5 py-2.5 border border-white/20 rounded-full text-xs md:text-sm font-medium hover:bg-white hover:text-[#010D48] transition-colors"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* Right Side: Toggle or Close */}
-                    <div className="flex flex-col items-end justify-start mt-6 md:mt-0 relative min-w-[50px] md:min-w-[120px]">
-                      <div className="relative w-12 h-12 flex items-center justify-center">
+                      {/* Right: Toggle Icon */}
+                      <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
                         <AnimatePresence mode="popLayout">
                           {isExpanded ? (
                             <motion.button
@@ -173,7 +144,7 @@ export default function ServicesHero() {
                                 e.stopPropagation();
                                 setExpandedId(null);
                               }}
-                              className="absolute w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0439B8] flex items-center justify-center text-black shadow-lg"
+                              className="absolute w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0439B8] flex items-center justify-center text-black shadow-lg z-20"
                             >
                               <X className="w-5 h-5 md:w-7 md:h-7" strokeWidth={3} />
                             </motion.button>
@@ -183,39 +154,63 @@ export default function ServicesHero() {
                               initial={{ opacity: 0, scale: 0.5 }}
                               animate={{ opacity: 1, scale: 1 }}
                               exit={{ opacity: 0, scale: 0.5 }}
-                              className="absolute w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#010D48] flex items-center justify-center transition-transform duration-300 group-hover:rotate-90"
+                              className="absolute w-8 h-8 md:w-12 md:h-12 rounded-full bg-[#010D48] flex items-center justify-center transition-transform duration-300 group-hover:rotate-90"
                             >
-                              <Plus className="w-5 h-5 md:w-6 md:h-6 text-[#CDDCFF]" />
+                              <Plus className="w-4 h-4 md:w-6 md:h-6 text-[#CDDCFF]" />
                             </motion.div>
                           )}
                         </AnimatePresence>
                       </div>
-
-                      <AnimatePresence>
-                        {isExpanded && (
-                          <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            className="relative mt-8 w-full md:w-[320px] h-[240px] hidden md:block overflow-visible"
-                          >
-                            <motion.div 
-                              initial={{ opacity: 0, rotate: 10, x: 50 }}
-                              animate={{ opacity: 1, rotate: -5, x: 0 }}
-                              exit={{ opacity: 0, x: 20 }}
-                              className="absolute top-0 right-0 w-[280px] h-[200px] rounded-2xl overflow-hidden z-10"
-                            >
-                              <Image 
-                                src={service.image1} 
-                                alt={service.title} 
-                                fill 
-                                className="object-contain"
-                              />
-                            </motion.div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
                     </div>
+
+                    {/* Expanded Content Area */}
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex flex-col md:flex-row justify-between items-start pt-6 md:pt-10">
+                            <div className="flex-1 max-w-xl">
+                              <p className="text-zinc-400 text-sm md:text-lg leading-relaxed mb-6 md:mb-8">
+                                {service.description}
+                              </p>
+                              
+                              <div className="flex flex-wrap gap-2 pb-4">
+                                {service.tags.map((tag) => (
+                                  <span 
+                                    key={tag} 
+                                    className="px-4 py-2 md:px-5 md:py-2.5 border border-white/20 rounded-full text-[10px] md:text-sm font-medium hover:bg-white hover:text-[#010D48] transition-colors"
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Mockup Image - Responsive positioning */}
+                            <div className="relative mt-8 md:mt-0 w-full md:w-[320px] h-[180px] md:h-[240px] overflow-visible">
+                              <motion.div 
+                                initial={{ opacity: 0, rotate: 10, x: 50 }}
+                                animate={{ opacity: 1, rotate: -5, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                className="absolute top-0 right-0 w-[180px] md:w-[280px] h-[130px] md:h-[200px] rounded-2xl overflow-hidden z-10"
+                              >
+                                <Image 
+                                  src={service.image1} 
+                                  alt={service.title} 
+                                  fill 
+                                  className="object-contain"
+                                />
+                              </motion.div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               );
