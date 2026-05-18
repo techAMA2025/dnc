@@ -55,13 +55,16 @@ export default function ModularCTA() {
           {/* Right Column - Social/Contact Grid */}
           <div className="lg:col-span-5 grid grid-cols-2 gap-4 md:gap-6">
             {[
-              { icon: <FaInstagram size={24} className="md:w-7 md:h-7" />, delay: 0.1 },
-              { icon: <FaWhatsapp size={24} className="md:w-7 md:h-7" />, delay: 0.2 },
-              { icon: <Mail size={24} className="md:w-7 md:h-7" />, delay: 0.3 },
-              { icon: <FaFacebookF size={24} className="md:w-7 md:h-7" />, delay: 0.4 },
+              { icon: <FaInstagram size={24} className="md:w-7 md:h-7" />, href: 'https://www.instagram.com/design_n_code/', delay: 0.1, external: true },
+              { icon: <FaWhatsapp size={24} className="md:w-7 md:h-7" />, href: 'https://wa.me/919220721921', delay: 0.2, external: true },
+              { icon: <Mail size={24} className="md:w-7 md:h-7" />, href: 'mailto:info@designncode.com', delay: 0.3, external: false },
+              { icon: <FaFacebookF size={24} className="md:w-7 md:h-7" />, href: 'https://www.facebook.com', delay: 0.4, external: true },
             ].map((item, idx) => (
-              <motion.div
+              <motion.a
                 key={idx}
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -72,7 +75,7 @@ export default function ModularCTA() {
                 <div className="transition-transform group-hover:scale-110">
                   {item.icon}
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 

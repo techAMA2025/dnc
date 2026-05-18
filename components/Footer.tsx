@@ -1,4 +1,5 @@
-import { FaXTwitter, FaLinkedinIn, FaGithub, FaFacebookF, FaInstagram } from "react-icons/fa6";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa6";
+import { Mail } from "lucide-react";
 import Link from "next/link";
 
 const Logo = () => (
@@ -60,9 +61,9 @@ const Footer = () => {
 
           <div className="flex items-center gap-6 text-zinc-400">
             {[
-              { icon: <FaLinkedinIn size={20} />, label: "LinkedIn", href: "https://linkedin.com" },
-              { icon: <FaInstagram size={20} />, label: "Instagram", href: "https://instagram.com" },
-              { icon: <FaGithub size={20} />, label: "GitHub", href: "https://github.com" },
+              { icon: <FaWhatsapp size={20} />, label: "WhatsApp", href: "https://wa.me/919220721921" },
+              { icon: <FaInstagram size={20} />, label: "Instagram", href: "https://www.instagram.com/design_n_code/" },
+              { icon: <Mail size={20} />, label: "Email", href: "mailto:info@designncode.com" },
             ].map((social, idx) => (
               <Link
                 key={idx}

@@ -1,6 +1,8 @@
 "use client";
 
 import { usePathname } from 'next/navigation';
+import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { Mail } from 'lucide-react';
 import StaggeredMenu from './StaggeredMenu';
 
 const menuItems = [
@@ -12,9 +14,9 @@ const menuItems = [
 ];
 
 const socialItems = [
-  { label: 'LinkedIn', link: 'https://linkedin.com' },
-  { label: 'Instagram', link: 'https://instagram.com' },
-  { label: 'GitHub', link: 'https://github.com' }
+  { label: 'WhatsApp', link: 'https://wa.me/919220721921', icon: <FaWhatsapp size={20} /> },
+  { label: 'Instagram', link: 'https://www.instagram.com/design_n_code/', icon: <FaInstagram size={20} /> },
+  { label: 'Email', link: 'mailto:info@designncode.com', icon: <Mail size={20} /> }
 ];
 
 const Logo = ({ isDark }: { isDark: boolean }) => (
