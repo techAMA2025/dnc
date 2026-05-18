@@ -13,7 +13,7 @@ const stackItems = [
 
 export function StackSection() {
   return (
-    <section className="py-24 md:py-32 bg-white overflow-hidden relative">
+    <section className="py-6 md:py-24 lg:py-32 bg-white overflow-hidden relative">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         
         {/* Heading & Subtext */}

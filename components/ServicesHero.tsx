@@ -59,7 +59,7 @@ export default function ServicesHero() {
   } as const;
 
   return (
-    <section className="relative w-full bg-white pt-32 pb-20 px-6 md:px-12 overflow-hidden">
+    <section className="relative w-full bg-white pt-32 pb-6 md:pb-20 px-6 md:px-12 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">

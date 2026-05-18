@@ -81,7 +81,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="relative z-10 w-full py-12 px-6 md:px-16 bg-white overflow-hidden border-t border-black/5">
+    <section className="relative z-10 w-full py-6 md:py-12 px-6 md:px-16 bg-white overflow-hidden border-t border-black/5">
       {/* Background decoration - gradient instead of blur for iOS performance */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(4,57,184,0.05) 0%, transparent 70%)' }} />
 

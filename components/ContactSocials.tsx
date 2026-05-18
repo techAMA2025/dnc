@@ -13,7 +13,7 @@ const ContactSocials = () => {
   const iconSize = 38;
 
   return (
-    <section className="py-24 bg-white max-w-7xl mx-auto px-6 text-center">
+    <section className="py-6 md:py-24 bg-white max-w-7xl mx-auto px-6 text-center">
       {/* Centered Heading and Subheading */}
       <div className="space-y-4 mb-16">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#000B3D]">

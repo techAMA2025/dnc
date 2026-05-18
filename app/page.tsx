@@ -41,7 +41,7 @@ export default function Home() {
       <Hero />
 
       {/* Projects Section */}
-      <section className="relative w-full min-h-[110vh] min-h-[110dvh] py-12 overflow-hidden bg-white border-t border-black/5">
+      <section className="relative w-full min-h-[110vh] min-h-[110dvh] py-6 md:py-12 overflow-hidden bg-white border-t border-black/5">
         {/* Decorative background glow - uses gradient instead of blur for iOS performance */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(4,57,184,0.05) 0%, transparent 70%)' }} />
 
@@ -134,7 +134,7 @@ export default function Home() {
         {/* Decorative background glow - uses gradient instead of blur for iOS performance */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(4,57,184,0.03) 0%, transparent 70%)' }} />
 
-        <div className="relative z-10 container mx-auto px-6 text-center pt-12 -mb-20">
+        <div className="relative z-10 container mx-auto px-6 text-center pt-6 md:pt-12 -mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -159,7 +159,7 @@ export default function Home() {
 
 
       {/* Blogs Section */}
-      <section className="py-12 bg-white dark:bg-neutral-950 border-t border-black/5 dark:border-white/5">
+      <section className="py-6 md:py-12 bg-white dark:bg-neutral-950 border-t border-black/5 dark:border-white/5">
         <div className="container mx-auto px-6 mb-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

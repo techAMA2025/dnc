@@ -287,14 +287,14 @@ export default function OurWork() {
 
       {/* Pixel CTA - Inserted between projects */}
       {secondHalf.length > 0 && (
-        <div className="my-20">
+        <div className="my-6 md:my-20">
           <PixelCTA />
         </div>
       )}
 
       {/* Second Grid Section */}
       {secondHalf.length > 0 && (
-        <div className="container mx-auto px-6 md:px-16 max-w-7xl mt-16 md:mt-24">
+        <div className="container mx-auto px-6 md:px-16 max-w-7xl mt-6 md:mt-24">
           <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
             {secondHalf.map((item, index) => (
               <motion.div
@@ -336,7 +336,7 @@ export default function OurWork() {
       )}
 
       {/* FAQ Section */}
-      <div className="mt-40">
+      <div className="mt-6 md:mt-40">
         <FAQ />
       </div>
 

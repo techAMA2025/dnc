@@ -21,7 +21,7 @@ export default function AboutPage() {
           Navbar and Footer are in layout.tsx.
       */}
       
-      <div className="mt-20">
+      <div className="mt-6 md:mt-20">
          <FAQ />
       </div>
       <PixelCTA />
