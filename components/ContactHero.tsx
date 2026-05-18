@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const ContactHero = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -66,7 +68,7 @@ const ContactHero = () => {
       });
 
       if (response.ok) {
-        setIsSubmitted(true);
+        router.push("/thank-you");
       } else {
         const errorData = await response.json();
         alert(errorData.error || "Something went wrong. Please try again.");
