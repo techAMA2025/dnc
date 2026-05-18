@@ -14,7 +14,7 @@ const AboutHero = () => {
           alt="About Hero Desktop"
           fill
           priority
-          className="object-cover object-center"
+          className="object-contain object-center"
         />
       </div>
 
@@ -25,7 +25,7 @@ const AboutHero = () => {
           alt="About Hero Mobile"
           fill
           priority
-          className="object-cover object-center"
+          className="object-contain object-center"
         />
       </div>
     </section>

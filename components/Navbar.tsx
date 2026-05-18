@@ -6,14 +6,15 @@ import StaggeredMenu from './StaggeredMenu';
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Services', ariaLabel: 'Our services', link: '/services' },
   { label: 'Our Work', ariaLabel: 'View our work', link: '/ourwork' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
 const socialItems = [
-  { label: 'Twitter', link: 'https://twitter.com' },
-  { label: 'GitHub', link: 'https://github.com' },
-  { label: 'LinkedIn', link: 'https://linkedin.com' }
+  { label: 'LinkedIn', link: 'https://linkedin.com' },
+  { label: 'Instagram', link: 'https://instagram.com' },
+  { label: 'GitHub', link: 'https://github.com' }
 ];
 
 const Logo = ({ isDark }: { isDark: boolean }) => (

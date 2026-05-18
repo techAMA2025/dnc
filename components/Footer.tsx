@@ -30,13 +30,21 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-14">
-          {["Products", "Studio", "Clients", "Blog", "Privacy", "Terms"].map((item) => (
+          {[
+            { label: "Home", href: "/" },
+            { label: "About Us", href: "/about" },
+            { label: "Services", href: "/services" },
+            { label: "Projects", href: "/ourwork" },
+            { label: "Contact Us", href: "/contact" },
+            { label: "Privacy Policy", href: "#" },
+            { label: "Legal Terms", href: "#" }
+          ].map((item) => (
             <Link
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               className="text-[14px] font-medium text-zinc-400 hover:text-white transition-colors duration-200"
             >
-              {item}
+              {item.label}
             </Link>
           ))}
         </nav>
@@ -52,15 +60,15 @@ const Footer = () => {
 
           <div className="flex items-center gap-6 text-zinc-400">
             {[
-              { icon: <FaXTwitter size={20} />, label: "Twitter" },
-              { icon: <FaLinkedinIn size={20} />, label: "LinkedIn" },
-              { icon: <FaGithub size={20} />, label: "GitHub" },
-              { icon: <FaFacebookF size={20} />, label: "Facebook" },
-              { icon: <FaInstagram size={20} />, label: "Instagram" },
+              { icon: <FaLinkedinIn size={20} />, label: "LinkedIn", href: "https://linkedin.com" },
+              { icon: <FaInstagram size={20} />, label: "Instagram", href: "https://instagram.com" },
+              { icon: <FaGithub size={20} />, label: "GitHub", href: "https://github.com" },
             ].map((social, idx) => (
               <Link
                 key={idx}
-                href="#"
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-white transition-colors duration-200"
                 aria-label={social.label}
               >

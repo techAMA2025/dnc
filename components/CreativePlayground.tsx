@@ -85,45 +85,7 @@ export default function CreativePlayground() {
           ))}
         </motion.div>
 
-        {/* Team Section */}
-        <div className="py-24">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#010D48] text-center mb-16 md:mb-24"
-          >
-            Meet the Tiny Team
-          </motion.h3>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center">
-            <ProfileCard 
-              name="Javi A. Torres" 
-              title="Software Engineer" 
-              handle="javicodes"
-              avatarUrl="https://i.pravatar.cc/600?img=11"
-            />
-            <ProfileCard 
-              name="David H." 
-              title="UI/UX Designer" 
-              handle="davidui"
-              avatarUrl="https://i.pravatar.cc/600?img=12"
-            />
-            <ProfileCard 
-              name="Alex R." 
-              title="Frontend Developer" 
-              handle="alexfrontend"
-              avatarUrl="https://i.pravatar.cc/600?img=13"
-            />
-            <ProfileCard 
-              name="Sarah M." 
-              title="Brand Designer" 
-              handle="sarahbrand"
-              avatarUrl="https://i.pravatar.cc/600?img=14"
-            />
-          </div>
-        </div>
+
       </div>
     </section>
   );

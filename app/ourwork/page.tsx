@@ -14,6 +14,7 @@ const workItems = [
     category: 'Lifestyle',
     image: '/project/12.svg',
     type: 'Consulting',
+    tech: 'Custom Code',
     link: 'https://sexsea.in/'
   },
   {
@@ -22,6 +23,7 @@ const workItems = [
     category: 'Fashion',
     image: '/project/11.svg',
     type: 'Consulting',
+    tech: 'Shopify',
     link: 'https://buntindia.com/'
   },
   {
@@ -30,6 +32,7 @@ const workItems = [
     category: 'Food & Beverage',
     image: '/project/10.svg',
     type: 'Consulting',
+    tech: 'Shopify',
     link: 'https://thefatcookiechef.com/'
   },
   {
@@ -38,6 +41,7 @@ const workItems = [
     category: 'Automotive',
     image: '/project/9.svg',
     type: 'Consulting',
+    tech: 'WordPress',
     link: 'https://kamalmotors.in/'
   },
   {
@@ -46,6 +50,7 @@ const workItems = [
     category: 'Hospitality',
     image: '/project/8.svg',
     type: 'Consulting',
+    tech: 'WordPress',
     link: 'https://bloomcafes.com/'
   },
   {
@@ -54,6 +59,7 @@ const workItems = [
     category: 'Creative Studio',
     image: '/project/7.svg',
     type: 'Consulting',
+    tech: 'WordPress',
     link: 'https://kichunstudio.com/'
   },
   {
@@ -62,6 +68,7 @@ const workItems = [
     category: 'Legal',
     image: '/project/6.svg',
     type: 'Legal',
+    tech: 'Custom Code',
     link: 'https://www.amalegalsolutions.com/'
   },
   {
@@ -70,6 +77,7 @@ const workItems = [
     category: 'E-commerce',
     image: '/project/5.svg',
     type: 'Consulting',
+    tech: 'Shopify',
     link: 'https://foire.in/'
   },
   {
@@ -78,6 +86,7 @@ const workItems = [
     category: 'Hospitality',
     image: '/project/4.svg',
     type: 'Consulting',
+    tech: 'WordPress',
     link: 'https://www.delhihousecafe.com/'
   },
   {
@@ -86,6 +95,7 @@ const workItems = [
     category: 'Management',
     image: '/project/3.svg',
     type: 'Consulting',
+    tech: 'WordPress',
     link: 'https://upstagecollect.com/'
   },
   {
@@ -94,6 +104,7 @@ const workItems = [
     category: 'Retail',
     image: '/project/2.svg',
     type: 'Consulting',
+    tech: 'Shopify',
     link: 'https://mamajama.in/'
   },
   {
@@ -102,6 +113,7 @@ const workItems = [
     category: 'Fintech',
     image: '/project/1.svg',
     type: 'Settlement',
+    tech: 'Custom Code',
     link: 'https://www.credsettle.com/'
   },
   {
@@ -110,6 +122,7 @@ const workItems = [
     category: 'Hospitality',
     image: '/project/18.svg',
     type: 'Consulting',
+    tech: 'WordPress',
     link: 'https://www.farzicafe.com/'
   },
   {
@@ -118,6 +131,7 @@ const workItems = [
     category: 'Lifestyle',
     image: '/project/17.svg',
     type: 'Consulting',
+    tech: 'Shopify',
     link: 'https://aerolume.in/'
   },
   {
@@ -126,6 +140,7 @@ const workItems = [
     category: 'Hospitality',
     image: '/project/16.svg',
     type: 'Consulting',
+    tech: 'WordPress',
     link: 'https://www.bo-tai.co.in/'
   },
   {
@@ -134,6 +149,7 @@ const workItems = [
     category: 'E-commerce',
     image: '/project/15.svg',
     type: 'Consulting',
+    tech: 'Shopify',
     link: 'https://pureasvaa.com/'
   },
   {
@@ -142,6 +158,7 @@ const workItems = [
     category: 'Fashion',
     image: '/project/14.svg',
     type: 'Consulting',
+    tech: 'Shopify',
     link: 'https://anyadha.in/'
   },
   {
@@ -150,11 +167,12 @@ const workItems = [
     category: 'Home Decor',
     image: '/project/13.svg',
     type: 'Consulting',
+    tech: 'WordPress',
     link: 'https://adornocasa.com/'
   }
 ];
 
-const categories = ['All', 'Settlement', 'Legal', 'Consulting'];
+const categories = ['All', 'Shopify', 'WordPress', 'Custom Code'];
 
 export default function OurWork() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -162,7 +180,7 @@ export default function OurWork() {
 
   const filteredItems = activeCategory === 'All' 
     ? workItems 
-    : workItems.filter(item => item.type === activeCategory);
+    : workItems.filter(item => item.tech === activeCategory);
 
   return (
     <main className="min-h-screen pt-32 pb-20 bg-white">
@@ -179,8 +197,14 @@ export default function OurWork() {
             OUR WORK
           </motion.h1>
 
-          <div className="relative flex gap-2">
-    
+          <div className="relative z-20 flex flex-col items-center">
+            <button
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              className="flex items-center gap-2 px-6 py-3 border border-zinc-200 rounded-full text-black hover:border-black hover:bg-zinc-50 transition-all duration-300 font-semibold"
+            >
+              <span>{activeCategory === 'All' ? 'All Tech' : activeCategory}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isFilterOpen ? 'rotate-180' : ''}`} />
+            </button>
             
             <AnimatePresence>
               {isFilterOpen && (
@@ -188,7 +212,7 @@ export default function OurWork() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full left-0 mt-3 bg-white border border-zinc-100 shadow-2xl rounded-sm overflow-hidden z-20 min-w-[200px]"
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-white border border-zinc-100 shadow-2xl rounded-xl overflow-hidden z-25 min-w-[220px]"
                 >
                   {categories.map((cat) => (
                     <button
@@ -197,7 +221,7 @@ export default function OurWork() {
                         setActiveCategory(cat);
                         setIsFilterOpen(false);
                       }}
-                      className="w-full px-6 py-4 text-left text-sm font-medium hover:bg-zinc-50 transition-colors border-b border-zinc-50 last:border-0"
+                      className={`w-full px-6 py-4 text-center text-sm font-medium transition-colors border-b border-zinc-50 last:border-0 text-black hover:bg-zinc-50 ${activeCategory === cat ? 'bg-zinc-50 font-bold text-[#0439B8]' : ''}`}
                     >
                       {cat}
                     </button>

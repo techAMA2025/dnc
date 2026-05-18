@@ -6,6 +6,7 @@ import PixelTransition from './PixelTransition';
 import DecryptedText from './react-bits/DecryptedText';
 import BlurText from './react-bits/BlurText';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function PixelCTA() {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,9 +36,22 @@ export default function PixelCTA() {
               direction="top"
               className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6"
             />
-            <p className="text-white text-lg md:text-2xl max-w-3xl font-light leading-relaxed">
+            <p className="text-white text-lg md:text-2xl max-w-3xl font-light leading-relaxed mb-8">
               Let&apos;s create a website that looks premium, loads fast, and helps your business grow online.
             </p>
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-[#0439B8] hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg shadow-white/5 hover:shadow-[#0439B8]/20"
+              >
+                Let&apos;s Work Together
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
 

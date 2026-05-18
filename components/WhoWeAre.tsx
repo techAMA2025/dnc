@@ -22,7 +22,7 @@ const WhoWeAre = () => {
         </div>
 
         <div className="max-w-8xl mx-auto text-center">
-          <p className="text-2xl md:text-[40px] font-regular leading-[1.3] md:leading-[1.4] text-[#010D48] tracking-tight">
+          <p className="text-xl md:text-[32px] font-regular leading-[1.3] md:leading-[1.4] text-[#010D48] tracking-tight">
             Designncode is run by one person
             <span className="inline-flex relative w-10 h-10 md:w-16 md:h-16 rounded-full overflow-hidden align-middle mx-2 border-2 border-[#010D48] -translate-y-1">
               <Image
