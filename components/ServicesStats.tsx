@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useInView, animate } from 'framer-motion';
 
 const stats = [
   { label: 'Projects Delivered', value: '800+' },
@@ -9,9 +9,39 @@ const stats = [
   { label: 'Clients Served', value: '500+' },
 ];
 
+function AnimatedCounter({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.3 });
+
+  // Extract the numeric portion and the rest of the string (e.g. "800" and "+")
+  const match = value.match(/^(\d+)(.*)$/);
+  const targetNumber = match ? parseInt(match[1], 10) : 0;
+  const suffix = match ? match[2] : '';
+
+  useEffect(() => {
+    if (!inView) return;
+
+    const node = ref.current;
+    if (!node) return;
+
+    // Smooth count animation with a premium easeOutExpo curve
+    const controls = animate(0, targetNumber, {
+      duration: 2.0,
+      ease: [0.16, 1, 0.3, 1], // easeOutExpo
+      onUpdate(latest) {
+        node.textContent = Math.floor(latest).toLocaleString() + suffix;
+      },
+    });
+
+    return () => controls.stop();
+  }, [inView, targetNumber, suffix]);
+
+  return <span ref={ref}>0{suffix}</span>;
+}
+
 export default function ServicesStats() {
   return (
-    <section className="w-full bg-white py-12 px-6 md:px-12">
+    <section className="w-full bg-white py-12 px-2">
       <div className="max-w-8xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, index) => (
@@ -26,8 +56,8 @@ export default function ServicesStats() {
               <div className="text-xs md:text-base font-medium opacity-80 tracking-wide uppercase">
                 {stat.label}
               </div>
-              <div className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-none">
-                {stat.value}
+              <div className="text-5xl sm:text-6xl md:text-8xl font-medium tracking-tighter leading-none">
+                <AnimatedCounter value={stat.value} />
               </div>
             </motion.div>
           ))}

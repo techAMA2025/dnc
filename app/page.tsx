@@ -3,6 +3,7 @@
 import Hero from "@/components/Hero";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const CircularGallery = dynamic(() => import("@/components/CircularGallery"), {
   ssr: false,
@@ -63,6 +64,18 @@ export default function Home() {
         <div className="w-full h-[85vh] h-[85dvh] -mt-20">
           <CircularGallery
             items={[
+              { image: "/Homepage_2.png", text: "Innovation Hub" },
+              { image: "/Homepage_2.png", text: "Cloud Core" },
+              { image: "/Homepage_2.png", text: "Digital Nexus" },
+              { image: "/Homepage_2.png", text: "Alpha Stream" },
+              { image: "/Homepage_2.png", text: "Quantum Edge" },
+              { image: "/Homepage_2.png", text: "Visionary Lab" },
+              { image: "/Homepage_2.png", text: "Synth Wave" },
+              { image: "/Homepage_2.png", text: "Pulse Design" },
+              { image: "/Homepage_2.png", text: "Nexus Prime" },
+              { image: "/Homepage_2.png", text: "Zenith Tech" },
+              /*
+              // Original project images preserved for later use:
               { image: "/projects/project-1.jpg", text: "Innovation Hub" },
               { image: "/projects/project-2.jpg", text: "Cloud Core" },
               { image: "/projects/project-3.jpg", text: "Digital Nexus" },
@@ -73,12 +86,45 @@ export default function Home() {
               { image: "/projects/project-8.jpg", text: "Pulse Design" },
               { image: "/projects/project-9.jpg", text: "Nexus Prime" },
               { image: "/projects/project-10.jpg", text: "Zenith Tech" },
+              */
             ]}
             bend={0}
             textColor="#000000"
             borderRadius={0.05}
             font="bold 30px Inter"
           />
+        </div>
+
+        <div className="relative z-10 flex justify-center mt-6 md:mt-8 pb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Link href="/ourwork">
+              <motion.button
+                whileHover={{ 
+                  scale: 1.05, 
+                  backgroundColor: '#0439B8',
+                  boxShadow: '0 10px 30px rgba(4, 57, 184, 0.25)'
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-black text-white rounded-full font-bold text-lg transition-all duration-300 shadow-lg flex items-center gap-2 group"
+              >
+                <span>View Our Work</span>
+                <svg 
+                  className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </motion.button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 

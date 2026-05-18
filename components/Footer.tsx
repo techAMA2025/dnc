@@ -56,7 +56,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-[14px] text-zinc-500">
-            © DesignnCode LLABC
+            © DesignnCode 
           </p>
 
           <div className="flex items-center gap-6 text-zinc-400">

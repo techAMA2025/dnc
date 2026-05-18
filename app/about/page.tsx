@@ -6,13 +6,15 @@ import WhoWeAre from '@/components/WhoWeAre';
 import CreativePlayground from '@/components/CreativePlayground';
 import FAQ from '@/components/FAQ';
 import PixelCTA from '@/components/PixelCTA';
+import {StackSection} from '@/components/stack-section';
 
 export default function AboutPage() {
   return (
     <main className="flex flex-col min-h-screen bg-white">
       <AboutHero />
       <WhoWeAre />
-      <CreativePlayground />
+      {/* <CreativePlayground /> */}
+      <StackSection />
 
       {/* Reusing common sections like FAQ and PixelCTA if desired, 
           but the user only specifically asked for Navbar, Footer and Hero.

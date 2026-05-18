@@ -93,6 +93,7 @@ export default function Hero() {
 
 
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <a href="/contact">
             <motion.button
               whileHover={{ 
                 scale: 1.05, 
@@ -104,13 +105,8 @@ export default function Hero() {
             >
               Build & Flex
             </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border border-white/20 text-white rounded-full font-bold text-lg backdrop-blur-md transition-all"
-            >
-              Our Strategy
-            </motion.button>
+            </a>
+        
 
           </div>
 

@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { Mail } from 'lucide-react';
+import Link from 'next/link';
 import StaggeredMenu from './StaggeredMenu';
 
 const menuItems = [
@@ -53,7 +54,11 @@ export default function Navbar() {
         openMenuButtonColor="#000000"
         changeMenuColorOnOpen={true}
         colors={['#010D48', '#0439B8', '#CDDCFF']}
-        logo={<Logo isDark={isDarkNavbarPage} />}
+        logo={
+          <Link href="/" className="cursor-pointer block">
+            <Logo isDark={isDarkNavbarPage} />
+          </Link>
+        }
         accentColor="#0439B8"
         onMenuOpen={() => console.log('Menu opened')}
         onMenuClose={() => console.log('Menu closed')}

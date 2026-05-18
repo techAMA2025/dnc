@@ -11,7 +11,7 @@ const services = [
     title: 'UI/UX Design',
     description: 'Clean and intuitive interfaces designed to improve usability, elevate user journeys, and create seamless digital interactions.',
     tags: ['Mobile App UI', 'Dashboard Design', 'User Experience', 'Wireframes'],
-    image1: '/services/UX.svg',
+    image1: '/services/UX.png',
     image2: '/laptop_mockup_2.png'
   },
   { 
@@ -19,7 +19,7 @@ const services = [
     title: 'Shopify',
     description: 'Custom Shopify solutions tailored to your brand, ensuring high conversion rates and a premium shopping experience.',
     tags: ['Store Setup', 'Theme Customization', 'App Integration', 'Performance'],
-    image1: '/services/Shopify.svg',
+    image1: '/services/Shopify.png',
     image2: '/laptop_mockup_2.png'
   },
   { 
@@ -27,7 +27,7 @@ const services = [
     title: 'WordPress',
     description: 'Powerful and flexible WordPress websites built with clean code and high scalability in mind.',
     tags: ['Custom Themes', 'Plugin Dev', 'Elementor/Divi', 'Site Speed'],
-    image1: '/services/Wordpress.svg',
+    image1: '/services/Wordpress.png',
     image2: '/laptop_mockup_2.png'
   },
   { 
@@ -35,7 +35,7 @@ const services = [
     title: 'Custom Code',
     description: 'High-performance web applications built from scratch using modern frameworks like React, Next.js, and Node.',
     tags: ['Fullstack Dev', 'API Design', 'Cloud Apps', 'Database Architecture'],
-    image1: '/services/Custom Code.svg',
+    image1: '/services/Custom Code.png',
     image2: '/laptop_mockup_2.png'
   },
   { 
@@ -43,7 +43,7 @@ const services = [
     title: 'Digital Marketing',
     description: 'Data-driven marketing strategies that help your brand reach the right audience and scale effectively.',
     tags: ['SEO', 'Google Ads', 'Meta Ads', 'Email Marketing'],
-    image1: '/services/Marketing.svg',
+    image1: '/services/Marketing.png',
     image2: '/laptop_mockup_2.png'
   },
 ];
@@ -80,10 +80,10 @@ export default function ServicesHero() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter leading-none text-black"
+              className="text-4xl sm:text-5xl md:text-7xl font-medium tracking-tighter leading-none text-black"
             >
               OUR DIGITAL <br />
-              <span className="text-[#0439B8]">SOLUTIONS.</span>
+              <span className="text-[#0182FC]">SOLUTIONS.</span>
             </motion.h1>
           </div>
 
