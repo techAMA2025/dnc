@@ -4,8 +4,8 @@ import ContactSocials from "@/components/ContactSocials";
 import FAQ from "@/components/FAQ";
 
 export const metadata = {
-  title: "Contact Us - Premium Brand Design",
-  description: "Reach out to us to make your brand look expensive. No boring websites, just clean visuals.",
+  title: "Contact Us | Get In Touch & Start Your Project",
+  description: "Ready to make your brand look premium? Reach out to Design N Code for elite custom web development, high-converting e-commerce sites, and technical SEO consultations.",
 };
 
 export default function ContactPage() {

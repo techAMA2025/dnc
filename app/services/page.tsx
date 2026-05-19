@@ -6,8 +6,8 @@ import ModularCTA from '@/components/ModularCTA';
 import PixelCTA from '@/components/PixelCTA';
 
 export const metadata = {
-  title: 'Our Services | Digital Solutions',
-  description: 'Explore our range of digital services including UI/UX Design, Shopify, WordPress, Custom Code, and Digital Marketing.',
+  title: 'Our Services | Custom Web, Shopify, WordPress & Marketing',
+  description: 'Explore our range of digital solutions. Custom Next.js architectures, tailored Shopify storefront integrations, robust headless WordPress setups, and conversion-optimized organic SEO strategies.',
 };
 
 export default function ServicesPage() {
