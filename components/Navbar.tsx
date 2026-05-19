@@ -11,6 +11,7 @@ const menuItems = [
   { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
   { label: 'Services', ariaLabel: 'Our services', link: '/services' },
   { label: 'Our Work', ariaLabel: 'View our work', link: '/ourwork' },
+  { label: 'Blogs', ariaLabel: 'Read our blogs', link: '/blogs' },
   { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
@@ -40,7 +41,7 @@ const Logo = ({ isDark }: { isDark: boolean }) => (
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isDarkNavbarPage = pathname === '/contact' || pathname === '/ourwork' || pathname === '/about' || pathname === '/services';
+  const isDarkNavbarPage = pathname === '/contact' || pathname === '/ourwork' || pathname === '/about' || pathname === '/services' || pathname === '/blogs' || pathname === '/privacy-policy' || pathname === '/terms-and-conditions';
 
   return (
     <header className="absolute top-0 left-0 w-full z-50">

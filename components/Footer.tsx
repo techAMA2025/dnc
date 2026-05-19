@@ -36,9 +36,10 @@ const Footer = () => {
             { label: "About Us", href: "/about" },
             { label: "Services", href: "/services" },
             { label: "Projects", href: "/ourwork" },
+            { label: "Blogs", href: "/blogs" },
             { label: "Contact Us", href: "/contact" },
-            { label: "Privacy Policy", href: "#" },
-            { label: "Legal Terms", href: "#" }
+            { label: "Privacy Policy", href: "/privacy-policy" },
+            { label: "Terms & Conditions", href: "/terms-and-conditions" }
           ].map((item) => (
             <Link
               key={item.label}

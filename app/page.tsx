@@ -64,29 +64,17 @@ export default function Home() {
         <div className="w-full h-[85vh] h-[85dvh] -mt-20">
           <CircularGallery
             items={[
-              { image: "/Homepage_2.png", text: "Innovation Hub" },
-              { image: "/Homepage_2.png", text: "Cloud Core" },
-              { image: "/Homepage_2.png", text: "Digital Nexus" },
-              { image: "/Homepage_2.png", text: "Alpha Stream" },
-              { image: "/Homepage_2.png", text: "Quantum Edge" },
-              { image: "/Homepage_2.png", text: "Visionary Lab" },
-              { image: "/Homepage_2.png", text: "Synth Wave" },
-              { image: "/Homepage_2.png", text: "Pulse Design" },
-              { image: "/Homepage_2.png", text: "Nexus Prime" },
-              { image: "/Homepage_2.png", text: "Zenith Tech" },
-              /*
-              // Original project images preserved for later use:
-              { image: "/projects/project-1.jpg", text: "Innovation Hub" },
-              { image: "/projects/project-2.jpg", text: "Cloud Core" },
-              { image: "/projects/project-3.jpg", text: "Digital Nexus" },
-              { image: "/projects/project-4.jpg", text: "Alpha Stream" },
-              { image: "/projects/project-5.jpg", text: "Quantum Edge" },
-              { image: "/projects/project-6.jpg", text: "Visionary Lab" },
-              { image: "/projects/project-7.jpg", text: "Synth Wave" },
-              { image: "/projects/project-8.jpg", text: "Pulse Design" },
-              { image: "/projects/project-9.jpg", text: "Nexus Prime" },
-              { image: "/projects/project-10.jpg", text: "Zenith Tech" },
-              */
+              { image: "/projects/ama.png", text: "AMA Mobile" },
+              { image: "/projects/ama-web.png", text: "AMA Web" },
+              { image: "/projects/bunt.png", text: "BUNT" },
+              { image: "/projects/delhi-house.png", text: "Delhi House" },
+              { image: "/projects/fat-cookie.png", text: "Fat Cookie" },
+              { image: "/projects/foire.png", text: "Foire" },
+              { image: "/projects/houseof-nihalkhera.png", text: "House of Nihalkhera" },
+              { image: "/projects/kamal-motors.png", text: "Kamal Motors" },
+              { image: "/projects/sex-sea.png", text: "SexSea" },
+              { image: "/projects/bloom.png", text: "Bloom" },
+              { image: "/projects/kichun.png", text: "Kichun" },
             ]}
             bend={0}
             textColor="#000000"
@@ -175,7 +163,7 @@ export default function Home() {
             </p>
           </motion.div>
         </div>
-        <ExpandableCardDemo />
+        <ExpandableCardDemo layout="list" />
       </section>
 
       {/* FAQ Section */}
