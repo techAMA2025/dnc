@@ -4,6 +4,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Plus, ArrowRight, Mail } from 'lucide-react';
 import { FaInstagram, FaWhatsapp, FaFacebookF } from 'react-icons/fa6';
+import Link from 'next/link';
+
+const MotionLink = motion(Link);
 
 export default function ModularCTA() {
   return (
@@ -40,7 +43,8 @@ export default function ModularCTA() {
             </div>
 
             {/* CTA Button */}
-            <motion.button
+            <MotionLink
+              href="/contact"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="mt-8 self-start group flex items-center gap-4 md:gap-6 bg-[#010D48] text-white pl-6 md:pl-8 pr-1.5 md:pr-2 py-1.5 md:py-2 rounded-full transition-shadow hover:shadow-2xl hover:shadow-blue-900/20"
@@ -49,7 +53,7 @@ export default function ModularCTA() {
               <div className="w-9 h-9 md:w-12 md:h-12 rounded-full bg-[#0439B8] flex items-center justify-center transition-transform group-hover:translate-x-1">
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
-            </motion.button>
+            </MotionLink>
           </motion.div>
 
           {/* Right Column - Social/Contact Grid */}
