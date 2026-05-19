@@ -20,7 +20,13 @@ export default function LoginPage() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/leads");
+      // Retrieve direct parameter or fall back to /leads
+      let targetPath = "/leads";
+      if (typeof window !== "undefined") {
+        const params = new URLSearchParams(window.location.search);
+        targetPath = params.get("redirect") || "/leads";
+      }
+      router.push(targetPath);
     } catch (err: any) {
       console.error(err);
       setError("Invalid email or password. Please try again.");

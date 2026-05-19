@@ -24,6 +24,8 @@ const ContactHero = () => {
       processedValue = value.replace(/[^a-zA-Z\s]/g, "");
     } else if (stateKey === "phone") {
       processedValue = value.replace(/[^0-9]/g, "").slice(0, 10);
+    } else if (stateKey === "budget") {
+      processedValue = value.replace(/[^0-9]/g, "");
     }
     setFormData(prev => ({ ...prev, [stateKey]: processedValue }));
   };
