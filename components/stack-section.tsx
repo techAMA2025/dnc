@@ -1,14 +1,52 @@
 "use client";
 
 import React from "react";
+import PhysicsBadges from "@/components/PhysicsBadges";
+import { SiFlutter, SiReact, SiWordpress, SiTailwindcss, SiNextdotjs, SiShopify } from "react-icons/si";
 
 const stackItems = [
-  { name: "Flutter", color: "bg-black", textColor: "text-white", icon: "/icons/flutter.svg", rotation: "-2deg" },
-  { name: "ReactJS", color: "bg-[#0439B8]", textColor: "text-white", icon: "/icons/react.svg", rotation: "4deg" },
-  { name: "WordPress", color: "bg-[#0439B8]", textColor: "text-white", icon: "/icons/wordpress.svg", rotation: "-3deg" },
-  { name: "Tailwind", color: "bg-[#0439B8]", textColor: "text-white", icon: "/icons/tailwind.svg", rotation: "5deg" },
-  { name: "Next.js", color: "bg-black", textColor: "text-white", icon: "/icons/nextjs.svg", rotation: "-1deg" },
-  { name: "Shopify", color: "bg-[#0439B8]", textColor: "text-white", icon: "/icons/shopify.svg", rotation: "2deg" },
+  { 
+    name: "Flutter", 
+    color: "bg-black hover:bg-[#02569B]/10 border-black", 
+    textColor: "text-white", 
+    icon: <SiFlutter className="w-5 h-5 text-[#02569B] group-hover:scale-110 transition-transform duration-300" />, 
+    rotation: "-2deg" 
+  },
+  { 
+    name: "ReactJS", 
+    color: "bg-[#0439B8] hover:bg-white border-[#0439B8]", 
+    textColor: "text-white hover:text-[#0439B8]", 
+    icon: <SiReact className="w-5 h-5 text-[#61DAFB] group-hover:rotate-180 transition-transform duration-700" />, 
+    rotation: "4deg" 
+  },
+  { 
+    name: "WordPress", 
+    color: "bg-[#0439B8] hover:bg-white border-[#0439B8]", 
+    textColor: "text-white hover:text-[#0439B8]", 
+    icon: <SiWordpress className="w-5 h-5 text-[#21759B]" />, 
+    rotation: "-3deg" 
+  },
+  { 
+    name: "Tailwind", 
+    color: "bg-[#0439B8] hover:bg-white border-[#0439B8]", 
+    textColor: "text-white hover:text-[#0439B8]", 
+    icon: <SiTailwindcss className="w-5 h-5 text-[#38BDF8]" />, 
+    rotation: "5deg" 
+  },
+  { 
+    name: "Next.js", 
+    color: "bg-black hover:bg-white border-black", 
+    textColor: "text-white hover:text-black", 
+    icon: <SiNextdotjs className="w-5 h-5 text-white hover:text-black transition-colors duration-300" />, 
+    rotation: "-1deg" 
+  },
+  { 
+    name: "Shopify", 
+    color: "bg-[#0439B8] hover:bg-white border-[#0439B8]", 
+    textColor: "text-white hover:text-[#0439B8]", 
+    icon: <SiShopify className="w-5 h-5 text-[#7AB55C]" />, 
+    rotation: "2deg" 
+  },
 ];
 
 export function StackSection() {
@@ -31,25 +69,27 @@ export function StackSection() {
           </div>
         </div>
 
-        {/* Tech Pills (Staggered at bottom) */}
-        <div className="mt-24 flex flex-wrap justify-center gap-6 md:gap-8">
-          {stackItems.map((item, index) => (
-            <div
-              key={index}
-              className={`${item.color} ${item.textColor} px-8 py-4 rounded-full flex items-center gap-3 shadow-lg transition-transform hover:scale-110 cursor-default`}
-              style={{
-                transform: `rotate(${item.rotation})`,
-              }}
-            >
-              <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
-                {/* Placeholder for icon - using initial for now as I don't have the SVG files yet */}
-                <span className="text-xs font-bold">{item.name[0]}</span>
+        {/* Tech Pills Physics Arena */}
+        <div className="mt-20">
+          <PhysicsBadges trigger="scroll" restitution={0.6} gravity={1.2}>
+            {stackItems.map((item, index) => (
+              <div
+                key={index}
+                className={`physics-badge group ${item.color} ${item.textColor} px-8 py-4 rounded-full flex items-center gap-3 border shadow-md hover:shadow-xl transition-all duration-300 select-none cursor-grab active:cursor-grabbing`}
+                style={{
+                  transform: `rotate(${item.rotation})`,
+                }}
+              >
+                <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center border border-white/10 shadow-inner">
+                  {item.icon}
+                </div>
+                <span className="text-lg md:text-2xl font-bold tracking-tight">{item.name}</span>
               </div>
-              <span className="text-lg md:text-2xl font-bold tracking-tight">{item.name}</span>
-            </div>
-          ))}
+            ))}
+          </PhysicsBadges>
         </div>
       </div>
     </section>
   );
 }
+
