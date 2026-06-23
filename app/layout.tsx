@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ClientSplashCursor from "@/components/ClientSplashCursor";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 const inter = Inter({
@@ -86,7 +85,6 @@ export default function RootLayout({
       className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col relative">
-        <ClientSplashCursor />
         <Navbar />
         {children}
         <Footer />

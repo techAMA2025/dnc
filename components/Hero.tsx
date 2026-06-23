@@ -63,6 +63,30 @@ export default function Hero() {
         />
       </div>
 
+      {/* Green Shade Background */}
+      <div className="absolute top-[-10%] right-[-10%] h-[900px] w-[821px] pointer-events-none z-0 opacity-80 mix-blend-screen">
+        <div className="absolute inset-[26.04%_34.24%_15.63%_0]">
+          <div className="absolute inset-[-20.15%_-19.58%]">
+            <img alt="" className="block max-w-none size-full" src="/hero-green-shade.svg" />
+          </div>
+        </div>
+        <div className="absolute inset-[33.85%_17.12%_7.81%_17.12%]">
+          <div className="absolute inset-[-20.15%_-19.58%]">
+            <img alt="" className="block max-w-none size-full" src="/hero-green-shade.svg" />
+          </div>
+        </div>
+        <div className="absolute inset-[41.67%_0_0_34.24%]">
+          <div className="absolute inset-[-20.15%_-19.58%]">
+            <img alt="" className="block max-w-none size-full" src="/hero-green-shade.svg" />
+          </div>
+        </div>
+        <div className="absolute inset-[0_34.24%_41.67%_0]">
+          <div className="absolute inset-[-20.15%_-19.58%]">
+            <img alt="" className="block max-w-none size-full" src="/hero-green-shade.svg" />
+          </div>
+        </div>
+      </div>
+
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center mt-20">
         <motion.div
